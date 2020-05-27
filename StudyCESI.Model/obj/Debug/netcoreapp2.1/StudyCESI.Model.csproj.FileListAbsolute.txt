@@ -6,3 +6,12 @@ C:\Users\Fatih\source\repos\StudyCESI2019\StudyCESI.Model\bin\Debug\netcoreapp2.
 C:\Users\Fatih\source\repos\StudyCESI2019\StudyCESI.Model\bin\Debug\netcoreapp2.1\StudyCESI.Model.pdb
 C:\Users\Fatih\source\repos\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.dll
 C:\Users\Fatih\source\repos\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.pdb
+D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Model\bin\Debug\netcoreapp2.1\StudyCESI.Model.deps.json
+D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Model\bin\Debug\netcoreapp2.1\StudyCESI.Model.dll
+D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Model\bin\Debug\netcoreapp2.1\StudyCESI.Model.pdb
+D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.csprojAssemblyReference.cache
+D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.AssemblyInfoInputs.cache
+D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.AssemblyInfo.cs
+D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.csproj.CoreCompileInputs.cache
+D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.dll
+D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.pdb

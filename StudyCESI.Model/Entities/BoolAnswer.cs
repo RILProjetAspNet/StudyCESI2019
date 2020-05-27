@@ -15,6 +15,6 @@ namespace StudyCESI.Model.Entities
 
         [Column("Question_QuestionId")]
         public int? QuestionId { get; set; }
-        public Question Question { get; set; }
+        public Question Question { get; set; } //Test du gitignore
     }
 }
