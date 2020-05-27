@@ -16,15 +16,15 @@ namespace StudyCESI.Model.Entities
         public DateTime CreationDate { get; set; }
 
         [Column("TypeQuestion_TypeQuestionId")]
-        public int? TypeQuestionId { get; set; }
+        public int TypeQuestionId { get; set; }
         public TypeQuestion TypeQuestion { get; set; }
 
         [Column("Subject_SubjectId")]
-        public int? SubjectId { get; set; }
+        public int SubjectId { get; set; }
         public Subject Subject { get; set; }
 
         [Column("AspNetUsers_Id")]
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
     }
 }

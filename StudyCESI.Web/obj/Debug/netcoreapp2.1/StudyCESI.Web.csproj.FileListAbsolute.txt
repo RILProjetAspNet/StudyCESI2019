@@ -121,3 +121,8 @@ C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Web\obj\Debug\netco
 C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\StudyCESI.Web.dll
 C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\StudyCESI.Web.pdb
 C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\StudyCESI.Web.genruntimeconfig.cache
+C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\Razor\Views\Questions\Create.cshtml.g.cs
+C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\Razor\Views\Questions\Delete.cshtml.g.cs
+C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\Razor\Views\Questions\Details.cshtml.g.cs
+C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\Razor\Views\Questions\Edit.cshtml.g.cs
+C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\Razor\Views\Questions\Index.cshtml.g.cs

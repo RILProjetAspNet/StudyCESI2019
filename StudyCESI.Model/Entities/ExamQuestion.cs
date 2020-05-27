@@ -12,11 +12,11 @@ namespace StudyCESI.Model.Entities
         public DateTime CreationDate { get; set; }
 
         [Column("Exam_ExamId")]
-        public int? ExamId { get; set; }
+        public int ExamId { get; set; }
         public Exam Exam { get; set; }
 
         [Column("Question_QuestionId")]
-        public int? QuestionId { get; set; }
+        public int QuestionId { get; set; }
         public Question Question { get; set; }
     }
 }

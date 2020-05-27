@@ -14,11 +14,11 @@ namespace StudyCESI.Model.Entities
         public DateTime CreationDate { get; set; }
 
         [Column("UserExam_UserExamId")]
-        public int? UserExamId { get; set; }
+        public int UserExamId { get; set; }
         public UserExam UserExam { get; set; }
 
         [Column("Question_QuestionId")]
-        public int? QuestionId { get; set; }
+        public int QuestionId { get; set; }
         public Question Question { get; set; }
 
 

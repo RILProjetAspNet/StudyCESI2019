@@ -10,8 +10,8 @@ using StudyCESI.Model.Data;
 namespace StudyCESI.Model.Migrations
 {
     [DbContext(typeof(StudyCesiContext))]
-    [Migration("20200527140056_init")]
-    partial class init
+    [Migration("20200527152743_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -322,13 +322,13 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<int>("Mark");
 
-                    b.Property<int?>("SubjectId")
+                    b.Property<int>("SubjectId")
                         .HasColumnName("Subject_SubjectId");
 
-                    b.Property<int?>("TypeQuestionId")
+                    b.Property<int>("TypeQuestionId")
                         .HasColumnName("TypeQuestion_TypeQuestionId");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnName("AspNetUsers_Id");
 
                     b.Property<string>("UserId1");
@@ -530,11 +530,13 @@ namespace StudyCESI.Model.Migrations
                 {
                     b.HasOne("StudyCESI.Model.Entities.Subject", "Subject")
                         .WithMany()
-                        .HasForeignKey("SubjectId");
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("StudyCESI.Model.Entities.TypeQuestion", "TypeQuestion")
                         .WithMany()
-                        .HasForeignKey("TypeQuestionId");
+                        .HasForeignKey("TypeQuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("StudyCESI.Model.Entities.User", "User")
                         .WithMany()

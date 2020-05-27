@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StudyCESI.Model.Migrations
 {
-    public partial class init : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -218,9 +218,9 @@ namespace StudyCESI.Model.Migrations
                     Header = table.Column<string>(nullable: true),
                     Mark = table.Column<int>(nullable: false),
                     CreationDate = table.Column<DateTime>(nullable: false),
-                    TypeQuestion_TypeQuestionId = table.Column<int>(nullable: true),
-                    Subject_SubjectId = table.Column<int>(nullable: true),
-                    AspNetUsers_Id = table.Column<int>(nullable: true),
+                    TypeQuestion_TypeQuestionId = table.Column<int>(nullable: false),
+                    Subject_SubjectId = table.Column<int>(nullable: false),
+                    AspNetUsers_Id = table.Column<int>(nullable: false),
                     UserId1 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -231,13 +231,13 @@ namespace StudyCESI.Model.Migrations
                         column: x => x.Subject_SubjectId,
                         principalTable: "Subjects",
                         principalColumn: "SubjectId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Questions_TypeQuestions_TypeQuestion_TypeQuestionId",
                         column: x => x.TypeQuestion_TypeQuestionId,
                         principalTable: "TypeQuestions",
                         principalColumn: "TypeQuestionId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Questions_AspNetUsers_UserId1",
                         column: x => x.UserId1,
