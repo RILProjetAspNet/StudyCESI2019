@@ -4396,20 +4396,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Fatih\\.nuget\\packages\\": {}
+    "C:\\Users\\dorya\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Fatih\\source\\repos\\StudyCESI2019\\StudyCESI.Model\\StudyCESI.Model.csproj",
+      "projectUniqueName": "C:\\Users\\dorya\\Desktop\\Cours\\CESI\\C#\\StudyCESI2019\\StudyCESI.Model\\StudyCESI.Model.csproj",
       "projectName": "StudyCESI.Model",
-      "projectPath": "C:\\Users\\Fatih\\source\\repos\\StudyCESI2019\\StudyCESI.Model\\StudyCESI.Model.csproj",
-      "packagesPath": "C:\\Users\\Fatih\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Fatih\\source\\repos\\StudyCESI2019\\StudyCESI.Model\\obj\\",
+      "projectPath": "C:\\Users\\dorya\\Desktop\\Cours\\CESI\\C#\\StudyCESI2019\\StudyCESI.Model\\StudyCESI.Model.csproj",
+      "packagesPath": "C:\\Users\\dorya\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dorya\\Desktop\\Cours\\CESI\\C#\\StudyCESI2019\\StudyCESI.Model\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Fatih\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\dorya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
