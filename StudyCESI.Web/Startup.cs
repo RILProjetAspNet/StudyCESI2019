@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StudyCESI.Model.Data;
+using StudyCESI.Model.Entities;
 
 namespace StudyCESI.Web
 {
@@ -37,7 +38,7 @@ namespace StudyCESI.Web
             services.AddDbContext<StudyCesiContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<User>()
                 .AddEntityFrameworkStores<StudyCesiContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
