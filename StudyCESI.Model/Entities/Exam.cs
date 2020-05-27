@@ -22,7 +22,7 @@ namespace StudyCESI.Model.Entities
         public DateTime CreationDate { get; set; }
 
         [Column("AspNetUsers_Id")]
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
     }
 }
