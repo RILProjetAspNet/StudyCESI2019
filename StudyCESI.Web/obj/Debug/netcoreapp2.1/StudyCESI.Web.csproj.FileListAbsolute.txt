@@ -123,9 +123,4 @@ D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Web\obj\Debug\netc
 D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\StudyCESI.Web.genruntimeconfig.cache
 D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Web\bin\Debug\netcoreapp2.1\Properties\serviceDependencies.json
 D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Web\bin\Debug\netcoreapp2.1\Properties\serviceDependencies.local.json
-D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\Razor\Views\Questions\Create.cshtml.g.cs
-D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\Razor\Views\Questions\Delete.cshtml.g.cs
-D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\Razor\Views\Questions\Details.cshtml.g.cs
-D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\Razor\Views\Questions\Edit.cshtml.g.cs
-D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\Razor\Views\Questions\Index.cshtml.g.cs
 D:\CESI_RIL_2019\C#\Projet_ASP\Projet\StudyCESI2019\StudyCESI.Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Menu.cshtml.g.cs
