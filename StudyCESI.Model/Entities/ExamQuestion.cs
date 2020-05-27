@@ -16,7 +16,7 @@ namespace StudyCESI.Model.Entities
         public Exam Exam { get; set; }
 
         [Column("Question_QuestionId")]
-        public int? QuestionId { get; set; }
+        public int QuestionId { get; set; }
         public Question Question { get; set; }
     }
 }
