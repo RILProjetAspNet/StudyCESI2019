@@ -13,7 +13,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StudyCESI.Model.Data;
 using StudyCESI.Model.Entities;
-using StudyCESI.Web.Data;
 
 namespace StudyCESI.Web
 {
@@ -44,8 +43,6 @@ namespace StudyCESI.Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<StudyCESIWebContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("StudyCESIWebContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
