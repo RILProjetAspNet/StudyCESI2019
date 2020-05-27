@@ -1,0 +1,8 @@
+C:\Users\Fatih\source\repos\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.csproj.CoreCompileInputs.cache
+C:\Users\Fatih\source\repos\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.AssemblyInfoInputs.cache
+C:\Users\Fatih\source\repos\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.AssemblyInfo.cs
+C:\Users\Fatih\source\repos\StudyCESI2019\StudyCESI.Model\bin\Debug\netcoreapp2.1\StudyCESI.Model.deps.json
+C:\Users\Fatih\source\repos\StudyCESI2019\StudyCESI.Model\bin\Debug\netcoreapp2.1\StudyCESI.Model.dll
+C:\Users\Fatih\source\repos\StudyCESI2019\StudyCESI.Model\bin\Debug\netcoreapp2.1\StudyCESI.Model.pdb
+C:\Users\Fatih\source\repos\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.dll
+C:\Users\Fatih\source\repos\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.pdb
