@@ -16,10 +16,13 @@ namespace StudyCESI.Model.Entities
         [DisplayName("Est vrai")]
         public bool IsRight { get; set; }
 
-        public DateTime CreationDate { get; set; }
 
         [Column("Question_QuestionId")]
+        [DisplayName("Question")]
         public int QuestionId { get; set; }
         public Question Question { get; set; }
+
+        [DisplayName("Date de création")]
+        public DateTime CreationDate { get; set; }
     }
 }

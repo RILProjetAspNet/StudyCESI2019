@@ -19,7 +19,7 @@ namespace StudyCESI.Model.Entities
         public int NumberQuestions { get; set; }
 
         [DisplayName("Durée de l'examen")]
-        public DateTime Duration { get; set; }
+        public int Duration { get; set; }
 
         [DisplayName("Nombre de tentatives autorisées")]
         [Range(1, 10)]
@@ -28,10 +28,12 @@ namespace StudyCESI.Model.Entities
         [DisplayName("Date limite de l'examen")]
         public DateTime EndDate { get; set; }
 
-        public DateTime CreationDate { get; set; }
 
         [Column("AspNetUsers_Id")]
         public string UserId { get; set; }
         public User User { get; set; }
+
+        [DisplayName("Date de création")]
+        public DateTime CreationDate { get; set; }
     }
 }

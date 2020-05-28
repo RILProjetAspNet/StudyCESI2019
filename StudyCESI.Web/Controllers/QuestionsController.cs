@@ -7,17 +7,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StudyCESI.Model.Data;
 using StudyCESI.Model.Entities;
+using Microsoft.AspNetCore.Identity;
 using StudyCESI.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StudyCESI.Web.Controllers
 {
+    [Authorize]
     public class QuestionsController : Controller
     {
         private readonly StudyCesiContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public QuestionsController(StudyCesiContext context)
+        public QuestionsController(StudyCesiContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Questions
@@ -65,6 +70,7 @@ namespace StudyCESI.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("QuestionId,Header,Mark,CreationDate,TypeQuestionId,SubjectId,UserId")] Question question)
         {
+            question.UserId = _userManager.GetUserId(User);
             if (ModelState.IsValid)
             {
                 _context.Add(question);

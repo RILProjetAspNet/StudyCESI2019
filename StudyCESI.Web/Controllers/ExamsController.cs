@@ -9,9 +9,11 @@ using StudyCESI.Model.Data;
 using StudyCESI.Model.Entities;
 using Microsoft.AspNetCore.Identity;
 using StudyCESI.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StudyCESI.Web.Controllers
 {
+    [Authorize]
     public class ExamsController : Controller
     {
         private readonly StudyCesiContext _context;

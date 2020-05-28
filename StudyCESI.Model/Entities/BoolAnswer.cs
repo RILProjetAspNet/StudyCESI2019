@@ -13,10 +13,12 @@ namespace StudyCESI.Model.Entities
         [DisplayName("Réponse")]
         public bool Answer { get; set; }
 
-        public DateTime CreationDate { get; set; }
-
         [Column("Question_QuestionId")]
+        [DisplayName("Question")]
         public int QuestionId { get; set; }
         public Question Question { get; set; } //Test du gitignore
+
+        [DisplayName("Date de création")]
+        public DateTime CreationDate { get; set; }
     }
 }
