@@ -197,9 +197,11 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<bool>("Answer");
 
-                    b.Property<DateTime>("CreationDate");
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 11, 8, 54, 465, DateTimeKind.Local));
 
-                    b.Property<int?>("QuestionId")
+                    b.Property<int>("QuestionId")
                         .HasColumnName("Question_QuestionId");
 
                     b.HasKey("BoolAnswerId");
@@ -217,11 +219,13 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<string>("Answer");
 
-                    b.Property<DateTime>("CreationDate");
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 11, 8, 54, 465, DateTimeKind.Local));
 
                     b.Property<bool>("IsRight");
 
-                    b.Property<int?>("QuestionId")
+                    b.Property<int>("QuestionId")
                         .HasColumnName("Question_QuestionId");
 
                     b.HasKey("ChoiceAnswerId");
@@ -237,7 +241,9 @@ namespace StudyCESI.Model.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreationDate");
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 11, 8, 54, 465, DateTimeKind.Local));
 
                     b.Property<DateTime>("Duration");
 
@@ -249,7 +255,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<int>("NumberTriesAllow");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnName("AspNetUsers_Id");
 
                     b.Property<string>("UserId1");
@@ -267,12 +273,14 @@ namespace StudyCESI.Model.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreationDate");
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 11, 8, 54, 465, DateTimeKind.Local));
 
                     b.Property<int?>("ExamId")
                         .HasColumnName("Exam_ExamId");
 
-                    b.Property<int?>("QuestionId")
+                    b.Property<int>("QuestionId")
                         .HasColumnName("Question_QuestionId");
 
                     b.HasKey("ExamQuestionId");
@@ -292,13 +300,15 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<string>("Answer");
 
-                    b.Property<DateTime>("CreationDate");
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 11, 8, 54, 466, DateTimeKind.Local));
 
                     b.Property<int>("HoleLimitEnd");
 
                     b.Property<int>("HoleLimitStart");
 
-                    b.Property<int?>("QuestionId")
+                    b.Property<int>("QuestionId")
                         .HasColumnName("Question_QuestionId");
 
                     b.HasKey("HoleAnswerId");
@@ -314,19 +324,23 @@ namespace StudyCESI.Model.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreationDate");
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 11, 8, 54, 466, DateTimeKind.Local));
 
-                    b.Property<string>("Header");
+                    b.Property<string>("Header")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<int>("Mark");
 
-                    b.Property<int?>("SubjectId")
+                    b.Property<int>("SubjectId")
                         .HasColumnName("Subject_SubjectId");
 
                     b.Property<int?>("TypeQuestionId")
                         .HasColumnName("TypeQuestion_TypeQuestionId");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnName("AspNetUsers_Id");
 
                     b.Property<string>("UserId1");
@@ -348,9 +362,13 @@ namespace StudyCESI.Model.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreationDate");
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 11, 8, 54, 462, DateTimeKind.Local));
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
 
                     b.HasKey("SubjectId");
 
@@ -363,7 +381,9 @@ namespace StudyCESI.Model.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreationDate");
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 11, 8, 54, 466, DateTimeKind.Local));
 
                     b.Property<string>("Name");
 
@@ -382,9 +402,11 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<int>("BestNote");
 
-                    b.Property<DateTime>("CreationDate");
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 11, 8, 54, 466, DateTimeKind.Local));
 
-                    b.Property<int?>("ExamId")
+                    b.Property<int>("ExamId")
                         .HasColumnName("Exam_ExamId");
 
                     b.Property<bool>("IsValid");
@@ -413,9 +435,11 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<string>("Answer");
 
-                    b.Property<DateTime>("CreationDate");
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 11, 8, 54, 466, DateTimeKind.Local));
 
-                    b.Property<int?>("QuestionId")
+                    b.Property<int>("QuestionId")
                         .HasColumnName("Question_QuestionId");
 
                     b.Property<int?>("UserExamId")
@@ -489,14 +513,16 @@ namespace StudyCESI.Model.Migrations
                 {
                     b.HasOne("StudyCESI.Model.Entities.Question", "Question")
                         .WithMany()
-                        .HasForeignKey("QuestionId");
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("StudyCESI.Model.Entities.ChoiceAnswer", b =>
                 {
                     b.HasOne("StudyCESI.Model.Entities.Question", "Question")
                         .WithMany()
-                        .HasForeignKey("QuestionId");
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("StudyCESI.Model.Entities.Exam", b =>
@@ -514,21 +540,24 @@ namespace StudyCESI.Model.Migrations
 
                     b.HasOne("StudyCESI.Model.Entities.Question", "Question")
                         .WithMany()
-                        .HasForeignKey("QuestionId");
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("StudyCESI.Model.Entities.HoleAnswer", b =>
                 {
                     b.HasOne("StudyCESI.Model.Entities.Question", "Question")
                         .WithMany()
-                        .HasForeignKey("QuestionId");
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("StudyCESI.Model.Entities.Question", b =>
                 {
                     b.HasOne("StudyCESI.Model.Entities.Subject", "Subject")
                         .WithMany()
-                        .HasForeignKey("SubjectId");
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("StudyCESI.Model.Entities.TypeQuestion", "TypeQuestion")
                         .WithMany()
@@ -543,7 +572,8 @@ namespace StudyCESI.Model.Migrations
                 {
                     b.HasOne("StudyCESI.Model.Entities.Exam", "Exam")
                         .WithMany()
-                        .HasForeignKey("ExamId");
+                        .HasForeignKey("ExamId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("StudyCESI.Model.Entities.User", "User")
                         .WithMany()
@@ -554,7 +584,8 @@ namespace StudyCESI.Model.Migrations
                 {
                     b.HasOne("StudyCESI.Model.Entities.Question", "Question")
                         .WithMany()
-                        .HasForeignKey("QuestionId");
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("StudyCESI.Model.Entities.UserExam", "UserExam")
                         .WithMany()

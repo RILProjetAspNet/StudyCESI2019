@@ -14,3 +14,4 @@ C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Model\obj\Debug\net
 C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.AssemblyInfo.cs
 C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.dll
 C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.pdb
+C:\Users\dorya\Desktop\Cours\CESI\C#\StudyCESI2019\StudyCESI.Model\obj\Debug\netcoreapp2.1\StudyCESI.Model.csprojAssemblyReference.cache
