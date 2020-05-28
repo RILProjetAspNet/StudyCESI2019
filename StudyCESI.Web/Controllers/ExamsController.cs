@@ -89,15 +89,17 @@ namespace StudyCESI.Web.Controllers
             }
 
             var exam = await _context.Exams.FindAsync(id);
+            var questions = _context.Questions.ToList();//await _context.Questions.Include(q => q.Subject).Include(q => q.TypeQuestion).ToListAsync();
             if (exam == null)
             {
                 return NotFound();
             }
-            return View(new CreateOrUpdateExamViewModel
+            var model = new CreateOrUpdateExamViewModel
             {
-                Questions = _context.Questions.ToList(),
+                Questions = questions,
                 Exam = exam
-            });
+            };
+            return View(model);
         }
 
         // POST: Exams/Edit/5

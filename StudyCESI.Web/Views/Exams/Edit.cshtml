@@ -1,4 +1,5 @@
-﻿@model StudyCESI.Model.Entities.Exam
+﻿@model StudyCESI.Web.Models.CreateOrUpdateExamViewModel
+
 
 @{
     ViewData["Title"] = "Edit";
@@ -12,47 +13,72 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ExamId" />
+            <input type="hidden" asp-for="Exam.ExamId" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Exam.Name" class="control-label"></label>
+                <input asp-for="Exam.Name" class="form-control" />
+                <span asp-validation-for="Exam.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumberQuestions" class="control-label"></label>
-                <input asp-for="NumberQuestions" class="form-control" />
-                <span asp-validation-for="NumberQuestions" class="text-danger"></span>
+                <label asp-for="Exam.NumberQuestions" class="control-label"></label>
+                <input asp-for="Exam.NumberQuestions" class="form-control" />
+                <span asp-validation-for="Exam.NumberQuestions" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Duration" class="control-label"></label>
-                <input asp-for="Duration" class="form-control" />
-                <span asp-validation-for="Duration" class="text-danger"></span>
+                <label asp-for="Exam.Duration" class="control-label"></label>
+                <input asp-for="Exam.Duration" class="form-control" />
+                <span asp-validation-for="Exam.Duration" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumberTriesAllow" class="control-label"></label>
-                <input asp-for="NumberTriesAllow" class="form-control" />
-                <span asp-validation-for="NumberTriesAllow" class="text-danger"></span>
+                <label asp-for="Exam.NumberTriesAllow" class="control-label"></label>
+                <input asp-for="Exam.NumberTriesAllow" class="form-control" />
+                <span asp-validation-for="Exam.NumberTriesAllow" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
+                <label asp-for="Exam.EndDate" class="control-label"></label>
+                <input asp-for="Exam.EndDate" class="form-control" />
+                <span asp-validation-for="Exam.EndDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreationDate" class="control-label"></label>
-                <input asp-for="CreationDate" class="form-control" />
-                <span asp-validation-for="CreationDate" class="text-danger"></span>
+                <label asp-for="Exam.CreationDate" class="control-label"></label>
+                <input asp-for="Exam.CreationDate" class="form-control" />
+                <span asp-validation-for="Exam.CreationDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
+                <label asp-for="Exam.UserId" class="control-label"></label>
+                <input asp-for="Exam.UserId" class="form-control" />
+                <span asp-validation-for="Exam.UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
     </div>
+    @foreach (var item in Model.Questions)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Header)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeQuestion.TypeQuestionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.SubjectId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.QuestionId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.QuestionId">Delete</a>
+            </td>
+        </tr>
+    }
 </div>
 
 <div>
