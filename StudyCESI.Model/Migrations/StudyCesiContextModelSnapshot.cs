@@ -200,7 +200,7 @@ namespace StudyCESI.Model.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 12, 37, 23, 545, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 85, DateTimeKind.Local));
 
                     b.Property<int>("QuestionId")
                         .HasColumnName("Question_QuestionId");
@@ -223,7 +223,7 @@ namespace StudyCESI.Model.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 12, 37, 23, 545, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 85, DateTimeKind.Local));
 
                     b.Property<bool>("IsRight");
 
@@ -246,7 +246,7 @@ namespace StudyCESI.Model.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 12, 37, 23, 545, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 85, DateTimeKind.Local));
 
                     b.Property<DateTime>("Duration");
 
@@ -258,14 +258,12 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<int>("NumberTriesAllow");
 
-                    b.Property<int>("UserId")
+                    b.Property<string>("UserId")
                         .HasColumnName("AspNetUsers_Id");
-
-                    b.Property<string>("UserId1");
 
                     b.HasKey("ExamId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Exams");
                 });
@@ -279,7 +277,7 @@ namespace StudyCESI.Model.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 12, 37, 23, 545, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 85, DateTimeKind.Local));
 
                     b.Property<int?>("ExamId")
                         .HasColumnName("Exam_ExamId");
@@ -307,7 +305,7 @@ namespace StudyCESI.Model.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 12, 37, 23, 546, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 86, DateTimeKind.Local));
 
                     b.Property<int>("HoleLimitEnd");
 
@@ -332,7 +330,7 @@ namespace StudyCESI.Model.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 12, 37, 23, 546, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 86, DateTimeKind.Local));
 
                     b.Property<string>("Header");
 
@@ -344,10 +342,8 @@ namespace StudyCESI.Model.Migrations
                     b.Property<int?>("TypeQuestionId")
                         .HasColumnName("TypeQuestion_TypeQuestionId");
 
-                    b.Property<int>("UserId")
+                    b.Property<string>("UserId")
                         .HasColumnName("AspNetUsers_Id");
-
-                    b.Property<string>("UserId1");
 
                     b.HasKey("QuestionId");
 
@@ -355,7 +351,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.HasIndex("TypeQuestionId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Questions");
                 });
@@ -369,7 +365,7 @@ namespace StudyCESI.Model.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 12, 37, 23, 542, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 79, DateTimeKind.Local));
 
                     b.Property<string>("Name");
 
@@ -387,7 +383,7 @@ namespace StudyCESI.Model.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 12, 37, 23, 546, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 86, DateTimeKind.Local));
 
                     b.Property<string>("Name");
 
@@ -409,7 +405,7 @@ namespace StudyCESI.Model.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 12, 37, 23, 546, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 87, DateTimeKind.Local));
 
                     b.Property<int>("ExamId")
                         .HasColumnName("Exam_ExamId");
@@ -418,16 +414,14 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<int>("NumberTries");
 
-                    b.Property<int?>("UserId")
+                    b.Property<string>("UserId")
                         .HasColumnName("AspNetUsers_Id");
-
-                    b.Property<string>("UserId1");
 
                     b.HasKey("UserExamId");
 
                     b.HasIndex("ExamId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserExams");
                 });
@@ -443,7 +437,7 @@ namespace StudyCESI.Model.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 12, 37, 23, 546, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 87, DateTimeKind.Local));
 
                     b.Property<int>("QuestionId")
                         .HasColumnName("Question_QuestionId");
@@ -464,6 +458,7 @@ namespace StudyCESI.Model.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<string>("Role");
 
                     b.ToTable("User");
 
@@ -535,7 +530,7 @@ namespace StudyCESI.Model.Migrations
                 {
                     b.HasOne("StudyCESI.Model.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("StudyCESI.Model.Entities.ExamQuestion", b =>
@@ -571,7 +566,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.HasOne("StudyCESI.Model.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("StudyCESI.Model.Entities.UserExam", b =>
@@ -583,7 +578,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.HasOne("StudyCESI.Model.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("StudyCESI.Model.Entities.UserExamAnswer", b =>
