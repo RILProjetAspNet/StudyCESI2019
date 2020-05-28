@@ -54,6 +54,7 @@ namespace StudyCESI.Web.Controllers
         {
             return View(new CreateOrUpdateExamViewModel 
             {
+                Subjects = _context.Subjects.ToList(),
                 Questions = _context.Questions.ToList()
             });
         }
@@ -63,7 +64,7 @@ namespace StudyCESI.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ExamId,Name,NumberQuestions,Duration,NumberTriesAllow,EndDate,CreationDate,UserId")] Exam exam)
+        public async Task<IActionResult> Create([Bind("ExamId,Name,SubjectId,NumberQuestions,Duration,NumberTriesAllow,EndDate,CreationDate,UserId")] Exam exam)
         {
             exam.UserId = _userManager.GetUserId(User);
             if (ModelState.IsValid)
@@ -76,6 +77,7 @@ namespace StudyCESI.Web.Controllers
             return View(new CreateOrUpdateExamViewModel
             {
                 Questions = _context.Questions.ToList(),
+                Subjects = _context.Subjects.ToList(),
                 Exam = exam
             }); ;
         }
@@ -96,6 +98,7 @@ namespace StudyCESI.Web.Controllers
             return View(new CreateOrUpdateExamViewModel
             {
                 Questions = _context.Questions.ToList(),
+                Subjects = _context.Subjects.ToList(),
                 Exam = exam
             });
         }
@@ -135,6 +138,7 @@ namespace StudyCESI.Web.Controllers
             return View(new CreateOrUpdateExamViewModel
             {
                 Questions = _context.Questions.ToList(),
+                Subjects = _context.Subjects.ToList(),
                 Exam = exam
             });
         }

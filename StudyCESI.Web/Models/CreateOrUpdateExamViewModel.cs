@@ -11,5 +11,8 @@ namespace StudyCESI.Web.Models
         public Exam Exam { get; set; }
 
         public List<Question> Questions { get; set; }
+
+        public List<Subject> Subjects { get; set; }
+
     }
 }

@@ -14,6 +14,11 @@ namespace StudyCESI.Model.Entities
         [DisplayName("Nom de l'examen")]
         public string Name { get; set; }
 
+        [Column("Subject_SubjectId")]
+        [DisplayName("Sujet")]
+        public int SubjectId { get; set; }
+        public Subject Subject { get; set; }
+
         [DisplayName("Nombre de questions")]
         [Range(1, 100)]
         public int NumberQuestions { get; set; }
