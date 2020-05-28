@@ -25,5 +25,54 @@ namespace StudyCESI.Model.Data
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Subject>()
+                .Property(s => s.CreationDate)
+                .HasDefaultValue(DateTime.Now);
+
+            modelBuilder.Entity<BoolAnswer>()
+                .Property(b => b.CreationDate)
+                .HasDefaultValue(DateTime.Now);
+
+            modelBuilder.Entity<ChoiceAnswer>()
+                .Property(c => c.CreationDate)
+                .HasDefaultValue(DateTime.Now);
+
+            modelBuilder.Entity<Exam>()
+                .Property(e => e.CreationDate)
+                .HasDefaultValue(DateTime.Now);
+
+            modelBuilder.Entity<ExamQuestion>()
+                .Property(e => e.CreationDate)
+                .HasDefaultValue(DateTime.Now);
+
+            modelBuilder.Entity<HoleAnswer>()
+                .Property(h => h.CreationDate)
+                .HasDefaultValue(DateTime.Now);
+
+            modelBuilder.Entity<Question>()
+               .Property(q => q.CreationDate)
+               .HasDefaultValue(DateTime.Now);
+
+            modelBuilder.Entity<HoleAnswer>()
+                .Property(h => h.CreationDate)
+                .HasDefaultValue(DateTime.Now);
+
+            modelBuilder.Entity<TypeQuestion>()
+                .Property(t => t.CreationDate)
+                .HasDefaultValue(DateTime.Now);
+
+            modelBuilder.Entity<UserExam>()
+                .Property(u => u.CreationDate)
+                .HasDefaultValue(DateTime.Now);
+
+            modelBuilder.Entity<UserExamAnswer>()
+                .Property(u => u.CreationDate)
+                .HasDefaultValue(DateTime.Now);
+        }
     }
 }
