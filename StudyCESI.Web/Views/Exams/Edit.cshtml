@@ -21,9 +21,9 @@
             <div class="form-group">
                 <label asp-for="Exam.SubjectId" class="control-label"></label>
                 <select asp-for="Exam.SubjectId" class="form-control">
-                    @foreach (var store in Model.Subjects)
+                    @foreach (var item in Model.Subjects)
                     {
-                        <option value="@store.SubjectId">@store.Name</option>
+                        <option value="@item.SubjectId">@item.Name</option>
                     }
                 </select>
             </div>
@@ -52,6 +52,28 @@
             </div>
         </form>
     </div>
+    <tbody>
+        @foreach (var item in Model.Questions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Header)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mark)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeQuestion.TypeQuestionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject.SubjectId)
+                </td>
+            </tr>
+        }
+    </tbody>
 </div>
 
 <div class="link-back-list">
