@@ -1,0 +1,124 @@
+﻿@model CreateAnswerViewModel
+
+
+@{
+    ViewData["Title"] = "Réponse";
+}
+
+<h2>Créer les réponses</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <h4>Question</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Question.Header)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Question.Header)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Question.Mark)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Question.Mark)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Question.CreationDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Question.CreationDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Question.TypeQuestion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Question.TypeQuestion.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Question.Subject)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Question.Subject.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Question.User)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Question.User.UserName)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="col-md-8">
+        <h3>Editer les réponses</h3>
+
+        <!-- BOOL -->
+        @if (Model.IsBoolAnswer)
+        {
+        <form asp-action="CreateBoolAnswer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BoolAnswer.Answer" class="control-label"></label>
+                <input asp-for="BoolAnswer.Answer" class="form-control" />
+                <span asp-validation-for="BoolAnswer.Answer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Aller aux réponses" class="btn btn-default" />
+            </div>
+        </form>
+        }
+        else if (Model.IsChoiceAnswer)
+        {
+        <!-- CHOICE -->
+        <form asp-action="CreateChoiceAnswer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ChoiceAnswer.Answer" class="control-label"></label>
+                <input asp-for="ChoiceAnswer.Answer" class="form-control" />
+                <span asp-validation-for="ChoiceAnswer.Answer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ChoiceAnswer.IsRight" class="control-label"></label>
+                <input asp-for="ChoiceAnswer.IsRight" class="form-control" />
+                <span asp-validation-for="ChoiceAnswer.IsRight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Aller aux réponses" class="btn btn-default" />
+            </div>
+        </form>
+        }
+        else if (Model.IsHoleAnswer)
+        {
+        <!-- HOLE -->
+    <form asp-action="CreateHoleAnswer">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="HoleAnswer.Answer" class="control-label"></label>
+            <input asp-for="HoleAnswer.Answer" class="form-control" />
+            <span asp-validation-for="HoleAnswer.Answer" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="HoleAnswer.HoleLimitStart" class="control-label"></label>
+            <input asp-for="HoleAnswer.HoleLimitStart" class="form-control" />
+            <span asp-validation-for="HoleAnswer.HoleLimitStart" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="HoleAnswer.HoleLimitEnd" class="control-label"></label>
+            <input asp-for="HoleAnswer.HoleLimitEnd" class="form-control" />
+            <span asp-validation-for="HoleAnswer.HoleLimitEnd" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Aller aux réponses" class="btn btn-default" />
+        </div>
+    </form>
+        }
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Question.QuestionId">Modifier</a> |
+
+    <!-- TODO :: Si annuler les réponses de la question, on supprime la question créée ?-->
+    <a asp-action="Index">Annuler</a>
+</div>
