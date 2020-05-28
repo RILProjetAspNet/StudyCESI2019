@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<StudyCESI.Model.Entities.Exam>
 
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -36,31 +37,42 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Subject.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumberQuestions)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Duration)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumberTriesAllow)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberQuestions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberTriesAllow)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+
+            @if (User.FindFirst("Role").Value == "Enseignant")
+            {
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ExamId">Modifier</a> |
                     <a asp-action="Details" asp-route-id="@item.ExamId">Détails</a> |
                     <a asp-action="Delete" asp-route-id="@item.ExamId">Supprimer</a>
                 </td>
-            </tr>
+            }
+            else
+            {
+                <td>
+                    <a asp-action="Pass" asp-route-id="@item.ExamId">Passer l'examen</a>
+                </td>
+            }
+
+        </tr>
         }
     </tbody>
 </table>
