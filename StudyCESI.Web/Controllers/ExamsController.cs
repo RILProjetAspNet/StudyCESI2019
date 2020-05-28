@@ -67,9 +67,16 @@ namespace StudyCESI.Web.Controllers
         public async Task<IActionResult> Create([Bind("ExamId,Name,SubjectId,NumberQuestions,Duration,NumberTriesAllow,EndDate,CreationDate,UserId")] Exam exam)
         {
             exam.UserId = _userManager.GetUserId(User);
+            var ok = _context.Questions.ToList();
             if (ModelState.IsValid)
             {
                 _context.Add(exam);
+                foreach(var q in _context.Questions.ToList())
+                {
+                    var examQuestion = new ExamQuestion { Exam = exam, Question = q };
+                    _context.Add(examQuestion);
+                }
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -135,9 +142,10 @@ namespace StudyCESI.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            
             return View(new CreateOrUpdateExamViewModel
             {
-                Questions = _context.Questions.ToList(),
+                Questions = _context.ExamQuestions.Where(eq => eq.ExamId == exam.ExamId).Select(eq =>eq.Question).ToList(),
                 Subjects = _context.Subjects.ToList(),
                 Exam = exam
             });
