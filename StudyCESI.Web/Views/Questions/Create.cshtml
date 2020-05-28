@@ -1,54 +1,63 @@
-﻿@model StudyCESI.Model.Entities.Question
+﻿@model CreateOrUpdateQuestionViewModel
 
 @{
     ViewData["Title"] = "Create";
 }
+           
 
-<h2>Create</h2>
+<h2>Créer</h2>
 
-<h4>Question</h4>
+<h4>Une Question</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Header" class="control-label"></label>
-                <input asp-for="Header" class="form-control" />
-                <span asp-validation-for="Header" class="text-danger"></span>
+                <label asp-for="Question.Header" class="control-label"></label>
+                <input asp-for="Question.Header" class="form-control" />
+                <span asp-validation-for="Question.Header" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Mark" class="control-label"></label>
-                <input asp-for="Mark" class="form-control" />
-                <span asp-validation-for="Mark" class="text-danger"></span>
+                <label asp-for="Question.Mark" class="control-label"></label>
+                <input asp-for="Question.Mark" class="form-control" />
+                <span asp-validation-for="Question.Mark" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreationDate" class="control-label"></label>
-                <input asp-for="CreationDate" class="form-control" />
-                <span asp-validation-for="CreationDate" class="text-danger"></span>
+                <label asp-for="Question.TypeQuestionId" class="control-label"></label>
+                <select asp-for="Question.TypeQuestionId" class="form-control">
+                    @foreach (var store in Model.TypeQuestions)
+                    {
+                        <option value="@store.TypeQuestionId">@store.Name</option>
+                    }
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="TypeQuestionId" class="control-label"></label>
-                <select asp-for="TypeQuestionId" class ="form-control" asp-items="ViewBag.TypeQuestionId"></select>
+                <label asp-for="Question.SubjectId" class="control-label"></label>
+                <select asp-for="Question.SubjectId" class="form-control">
+                    @foreach (var store in Model.Subjects)
+                    {
+                        <option value="@store.SubjectId">@store.Name</option>
+                    }
+                </select>
             </div>
+
+            <!-- TODO :: Delete when we set the user in back from Identity-->
             <div class="form-group">
-                <label asp-for="SubjectId" class="control-label"></label>
-                <select asp-for="SubjectId" class ="form-control" asp-items="ViewBag.SubjectId"></select>
+                <label asp-for="Question.UserId" class="control-label"></label>
+                <input asp-for="Question.UserId" class="form-control" />
+                <span asp-validation-for="Question.User.UserName" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Aller aux réponses" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Retour à la liste</a>
 </div>
 
 @section Scripts {
