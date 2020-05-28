@@ -52,28 +52,32 @@
             </div>
         </form>
     </div>
-    <tbody>
-        @foreach (var item in Model.Questions)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Header)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Mark)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreationDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TypeQuestion.TypeQuestionId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Subject.SubjectId)
-                </td>
-            </tr>
-        }
-    </tbody>
+    <div>
+        <table class="table">
+            <tbody>
+                @foreach (var item in Model.Questions)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Header)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mark)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypeQuestion.TypeQuestionId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject.SubjectId)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <div class="link-back-list">

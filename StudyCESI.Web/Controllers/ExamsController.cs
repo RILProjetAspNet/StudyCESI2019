@@ -71,12 +71,9 @@ namespace StudyCESI.Web.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(exam);
-                foreach(var q in _context.Questions.ToList())
-                {
-                    var examQuestion = new ExamQuestion { Exam = exam, Question = q };
-                    _context.Add(examQuestion);
-                }
-                
+
+                SelectRandomQuestion(exam);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -87,6 +84,21 @@ namespace StudyCESI.Web.Controllers
                 Subjects = _context.Subjects.ToList(),
                 Exam = exam
             }); ;
+        }
+
+        private void SelectRandomQuestion(Exam exam)
+        {
+            int i = 0;
+            foreach (var q in _context.Questions.Where(q=>q.SubjectId == exam.SubjectId).ToList())
+            {
+                if(i == exam.NumberQuestions)
+                {
+                    break;
+                }
+                var examQuestion = new ExamQuestion { Exam = exam, Question = q };
+                _context.Add(examQuestion);
+                i++;
+            }
         }
 
         // GET: Exams/Edit/5
@@ -102,9 +114,10 @@ namespace StudyCESI.Web.Controllers
             {
                 return NotFound();
             }
+
             return View(new CreateOrUpdateExamViewModel
             {
-                Questions = _context.Questions.ToList(),
+                Questions = _context.ExamQuestions.Where(eq => eq.ExamId == exam.ExamId).Select(eq => eq.Question).ToList(),
                 Subjects = _context.Subjects.ToList(),
                 Exam = exam
             });
