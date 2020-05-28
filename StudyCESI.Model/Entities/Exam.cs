@@ -18,7 +18,7 @@ namespace StudyCESI.Model.Entities
         public int NumberQuestions { get; set; }
 
         [DisplayName("Durée de l'examen")]
-        public DateTime Duration { get; set; }
+        public int Duration { get; set; }
 
         [DisplayName("Nombre de tentatives autorisées")]
         public int  NumberTriesAllow { get; set; }
