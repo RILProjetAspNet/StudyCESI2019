@@ -4,11 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Liste des types de question</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div style="text-align: end">
+    <input type="button" value="Créer un nouveau type de question" onclick="location.href='@Url.Action("Create", "TypeQuestions")'" class="btn btn-default" />
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -37,9 +37,9 @@
                 @Html.DisplayFor(modelItem => item.CreationDate)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.TypeQuestionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TypeQuestionId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TypeQuestionId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.TypeQuestionId">Modifier</a> |
+                <a asp-action="Details" asp-route-id="@item.TypeQuestionId">Détails</a> |
+                <a asp-action="Delete" asp-route-id="@item.TypeQuestionId">Supprimer</a>
             </td>
         </tr>
 }

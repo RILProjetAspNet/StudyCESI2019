@@ -6,11 +6,12 @@
 
 <h2>Liste des questions</h2>
 
-<p>
-    <a asp-action="Create">Créer une question</a> |
-    <a asp-controller="Subjects" asp-action="Index">Les sujets</a> |
-    <a asp-controller="TypeQuestions" asp-action="Index">Les types de question</a>
-</p>
+
+<div style="text-align: end">
+    <input type="button" value="Les sujets" onclick="location.href='@Url.Action("Index", "Subjects")'" class="btn btn-default" />
+    <input type="button" value="Les types de question" onclick="location.href='@Url.Action("Index", "TypeQuestions")'" class="btn btn-default" />
+    <input type="button" value="Créer une question" onclick="location.href='@Url.Action("Create", "Questions")'" class="btn btn-default btn-delete" />
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -51,9 +52,9 @@
                 @Html.DisplayFor(modelItem => item.Subject.SubjectId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.QuestionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.QuestionId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.QuestionId">Modifier</a> |
+                <a asp-action="Details" asp-route-id="@item.QuestionId">Détails</a> |
+                <a asp-action="Delete" asp-route-id="@item.QuestionId">Supprimer</a>
             </td>
         </tr>
 }

@@ -7,9 +7,10 @@
 
 <h2>Liste des examens</h2>
 
-<p>
-    <a asp-action="Create">Créer un examen</a>
-</p>
+<div style="text-align: end">
+    <input type="button" value="Créer un examen" onclick="location.href='@Url.Action("Create", "Exams")'" class="btn btn-default" />
+</div>
+
 <table class="table">
     <thead>
         <tr>
