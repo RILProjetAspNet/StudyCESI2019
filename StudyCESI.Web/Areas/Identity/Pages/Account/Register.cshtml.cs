@@ -62,6 +62,12 @@ namespace StudyCESI.Web.Areas.Identity.Pages.Account
 
             [Display(Name = "Select Role")]
             public string Role { get; set; }
+
+            [Display(Name = "Last name")]
+            public string LastName { get; set; }
+
+            [Display(Name = "First name")]
+            public string FirstName { get; set; }
         }
 
         public void OnGet(string returnUrl = null)
@@ -75,7 +81,7 @@ namespace StudyCESI.Web.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email,Role = Input.Role };
+                var user = new User { UserName = Input.Email, Email = Input.Email,Role = Input.Role,LastName =Input.LastName,FirstName=Input.FirstName };
                 var role = _roleManager.FindByIdAsync(Input.Role).Result;
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
