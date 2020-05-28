@@ -17,12 +17,10 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a asp-area="" asp-controller="Home" asp-action="Index">Accueil</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="About">A propos</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
 
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <li><a asp-area="" asp-controller="Exams">Examen</a></li>
+                    <li><a asp-area="" asp-controller="Exams" asp-action="Index">Examen</a></li>
                     <li><a asp-area="" asp-controller="Questions" asp-action="Index">Question</a></li>
                 }
             </ul>

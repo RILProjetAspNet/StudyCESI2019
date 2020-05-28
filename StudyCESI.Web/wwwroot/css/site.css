@@ -13,9 +13,21 @@ body {
 }
 
 /* Carousel */
-.carousel-caption p {
+.carousel-caption {
+    top: 0;
     font-size: 20px;
     line-height: 1.4;
+    color: white;
+}
+
+.carousel-caption.active {
+    text-align: left;
+    left: 126px;
+}
+
+.img-caroussel {
+    width: 100% !important;
+    height: 400px !important;
 }
 
 /* Make .svg files in the carousel display properly in older browsers */
@@ -28,6 +40,46 @@ body {
     margin: 15px;
 }
 
+/* Style des formulaires */
+.form-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.link-back-list {
+    text-align: end;
+}
+
+.btn-create {
+    width: 100%;
+    background-color: #101010;
+    color: #fff;
+}
+
+.btn-delete {
+    background-color: #101010;
+    color: #fff;
+}
+
+.btn-create:hover {
+    background-color: white;
+    color: #101010;
+    border: 1px solid #101010;
+    font-weight: bold;
+}
+
+.btn-delete:hover {
+    background-color: white;
+    color: #101010;
+    border: 1px solid #101010;
+    font-weight: bold;
+}
+
+/* Affichage détails objet*/
+.dl-horizontal dt {
+    text-align: left;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
@@ -35,3 +87,4 @@ body {
         display: none;
     }
 }
+

@@ -9,7 +9,7 @@
 
 <h4>Créer une Question</h4>
 <hr />
-<div class="row">
+<div class="row form-content">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -42,13 +42,13 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Aller aux réponses" class="btn btn-default" />
+                <input type="submit" value="Aller aux réponses" class="btn btn-default btn-create" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
+<div class="link-back-list">
     <a asp-action="Index">Retour à la liste</a>
 </div>
 
