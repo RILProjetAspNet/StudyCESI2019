@@ -60,12 +60,15 @@ namespace StudyCESI.Web.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
+            [Required]
             [Display(Name = "Select Role")]
             public string Role { get; set; }
 
+            [Required]
             [Display(Name = "Last name")]
             public string LastName { get; set; }
 
+            [Required]
             [Display(Name = "First name")]
             public string FirstName { get; set; }
         }
