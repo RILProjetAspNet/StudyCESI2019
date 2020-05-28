@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StudyCESI.Model.Data;
 using StudyCESI.Model.Entities;
+using Microsoft.AspNetCore.Identity;
 using StudyCESI.Web.Models;
 
 namespace StudyCESI.Web.Controllers
@@ -14,10 +15,12 @@ namespace StudyCESI.Web.Controllers
     public class ExamsController : Controller
     {
         private readonly StudyCesiContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public ExamsController(StudyCesiContext context)
+        public ExamsController(StudyCesiContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Exams
@@ -60,6 +63,7 @@ namespace StudyCESI.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ExamId,Name,NumberQuestions,Duration,NumberTriesAllow,EndDate,CreationDate,UserId")] Exam exam)
         {
+            exam.UserId = _userManager.GetUserId(User);
             if (ModelState.IsValid)
             {
                 _context.Add(exam);
