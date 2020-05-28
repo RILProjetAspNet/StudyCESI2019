@@ -60,7 +60,7 @@ namespace StudyCESI.Web.Controllers
             {
                 Subjects = _context.Subjects.ToList(),
                 TypeQuestions = _context.TypeQuestions.ToList()
-            }) ;
+            });
         }
 
         // POST: Questions/Create
@@ -75,15 +75,62 @@ namespace StudyCESI.Web.Controllers
             {
                 _context.Add(question);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+
+                // TODO :: Return the right view to fill the answer => TypeQuestion
+                question.TypeQuestion = _context.TypeQuestions.Where(t => t.TypeQuestionId == question.TypeQuestionId).FirstOrDefault();
+                question.Subject = _context.Subjects.Where(s => s.SubjectId == question.SubjectId).FirstOrDefault();
+
+                var model = new CreateAnswerViewModel
+                {
+                    Question = question
+                };
+
+                if (question.TypeQuestion.Name == "Multiple" || question.TypeQuestion.Name == "Unique")
+                {
+                    model.IsChoiceAnswer = true; 
+                } else if (question.TypeQuestion.Name == "VraiFaux")
+                {
+                    model.IsBoolAnswer = true;
+                } else if (question.TypeQuestion.Name == "Trou")
+                {
+                    model.IsHoleAnswer = true;
+                }
+
+                return View("CreateAnswer", model);
             }
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "SubjectId", "SubjectId", question.SubjectId);
             ViewData["TypeQuestionId"] = new SelectList(_context.TypeQuestions, "TypeQuestionId", "TypeQuestionId", question.TypeQuestionId);
             return View(question);
-
-            // TODO :: Return the right view to fill the answer => TypeQuestion
         }
 
+        // POST: Questions/CreateAnswer
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /*[HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateChoiceAnswer([Bind("QuestionId,Header,Mark,CreationDate,TypeQuestionId,SubjectId,UserId")] ChoiceAnswer answer)
+        {
+            question.UserId = _userManager.GetUserId(User);
+            if (ModelState.IsValid)
+            {
+                _context.Add(question);
+                await _context.SaveChangesAsync();
+                //return RedirectToAction(nameof(Index));
+
+                // TODO :: Return the right view to fill the answer => TypeQuestion
+                var model = new CreateAnswerViewModel
+                {
+                    Question = question
+                };
+
+                return View("CreateAnswer", model);
+            }
+            ViewData["SubjectId"] = new SelectList(_context.Subjects, "SubjectId", "SubjectId", question.SubjectId);
+            ViewData["TypeQuestionId"] = new SelectList(_context.TypeQuestions, "TypeQuestionId", "TypeQuestionId", question.TypeQuestionId);
+            return View(question);
+        }
+        */
         // GET: Questions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

@@ -54,6 +54,7 @@ namespace StudyCESI.Web.Controllers
         {
             return View(new CreateOrUpdateExamViewModel 
             {
+                Subjects = _context.Subjects.ToList(),
                 Questions = _context.Questions.ToList()
             });
         }
@@ -63,12 +64,19 @@ namespace StudyCESI.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ExamId,Name,NumberQuestions,Duration,NumberTriesAllow,EndDate,CreationDate,UserId")] Exam exam)
+        public async Task<IActionResult> Create([Bind("ExamId,Name,SubjectId,NumberQuestions,Duration,NumberTriesAllow,EndDate,CreationDate,UserId")] Exam exam)
         {
             exam.UserId = _userManager.GetUserId(User);
+            var ok = _context.Questions.ToList();
             if (ModelState.IsValid)
             {
                 _context.Add(exam);
+                foreach(var q in _context.Questions.ToList())
+                {
+                    var examQuestion = new ExamQuestion { Exam = exam, Question = q };
+                    _context.Add(examQuestion);
+                }
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -76,6 +84,7 @@ namespace StudyCESI.Web.Controllers
             return View(new CreateOrUpdateExamViewModel
             {
                 Questions = _context.Questions.ToList(),
+                Subjects = _context.Subjects.ToList(),
                 Exam = exam
             }); ;
         }
@@ -89,17 +98,16 @@ namespace StudyCESI.Web.Controllers
             }
 
             var exam = await _context.Exams.FindAsync(id);
-            var questions = _context.Questions.ToList();//await _context.Questions.Include(q => q.Subject).Include(q => q.TypeQuestion).ToListAsync();
             if (exam == null)
             {
                 return NotFound();
             }
-            var model = new CreateOrUpdateExamViewModel
+            return View(new CreateOrUpdateExamViewModel
             {
-                Questions = questions,
+                Questions = _context.Questions.ToList(),
+                Subjects = _context.Subjects.ToList(),
                 Exam = exam
-            };
-            return View(model);
+            });
         }
 
         // POST: Exams/Edit/5
@@ -134,9 +142,11 @@ namespace StudyCESI.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            
             return View(new CreateOrUpdateExamViewModel
             {
-                Questions = _context.Questions.ToList(),
+                Questions = _context.ExamQuestions.Where(eq => eq.ExamId == exam.ExamId).Select(eq =>eq.Question).ToList(),
+                Subjects = _context.Subjects.ToList(),
                 Exam = exam
             });
         }
