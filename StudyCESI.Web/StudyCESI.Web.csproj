@@ -16,4 +16,8 @@
 		<ProjectReference Include="..\StudyCESI.Model\StudyCESI.Model.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Areas\Identity\Services\" />
+	</ItemGroup>
+
 </Project>
