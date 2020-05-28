@@ -19,7 +19,6 @@ namespace StudyCESI.Model.Entities
         [DisplayName("Est valide")]
         public bool IsValid { get; set; }
 
-        public DateTime CreationDate { get; set; }
 
         [Column("AspNetUsers_Id")]
         public string UserId { get; set; }
@@ -28,5 +27,8 @@ namespace StudyCESI.Model.Entities
         [Column("Exam_ExamId")]
         public int ExamId { get; set; }
         public Exam Exam { get; set; }
+
+        [DisplayName("Date de création")]
+        public DateTime CreationDate { get; set; }
     }
 }

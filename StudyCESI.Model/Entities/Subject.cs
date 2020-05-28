@@ -12,6 +12,8 @@ namespace StudyCESI.Model.Entities
         [DisplayName("Nom")]
         public string Name { get; set; }
 
+
+        [DisplayName("Date de création")]
         public DateTime CreationDate { get; set; }
     }
 }

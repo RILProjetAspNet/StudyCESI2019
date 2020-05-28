@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StudyCESI.Model.Migrations
 {
-    public partial class init : Migration
+    public partial class init_do : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,7 +41,8 @@ namespace StudyCESI.Model.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    Discriminator = table.Column<string>(nullable: false)
+                    Discriminator = table.Column<string>(nullable: false),
+                    Role = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,7 +56,7 @@ namespace StudyCESI.Model.Migrations
                     SubjectId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    CreationDate = table.Column<DateTime>(nullable: false)
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 7, 33, 85, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -70,7 +71,7 @@ namespace StudyCESI.Model.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Wording = table.Column<string>(nullable: true),
-                    CreationDate = table.Column<DateTime>(nullable: false)
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 7, 33, 89, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -194,16 +195,15 @@ namespace StudyCESI.Model.Migrations
                     Duration = table.Column<DateTime>(nullable: false),
                     NumberTriesAllow = table.Column<int>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false),
-                    AspNetUsers_Id = table.Column<int>(nullable: true),
-                    UserId1 = table.Column<string>(nullable: true)
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 7, 33, 88, DateTimeKind.Local)),
+                    AspNetUsers_Id = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Exams", x => x.ExamId);
                     table.ForeignKey(
-                        name: "FK_Exams_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_Exams_AspNetUsers_AspNetUsers_Id",
+                        column: x => x.AspNetUsers_Id,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -217,11 +217,10 @@ namespace StudyCESI.Model.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Header = table.Column<string>(nullable: true),
                     Mark = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 7, 33, 89, DateTimeKind.Local)),
                     TypeQuestion_TypeQuestionId = table.Column<int>(nullable: true),
-                    Subject_SubjectId = table.Column<int>(nullable: true),
-                    AspNetUsers_Id = table.Column<int>(nullable: true),
-                    UserId1 = table.Column<string>(nullable: true)
+                    Subject_SubjectId = table.Column<int>(nullable: false),
+                    AspNetUsers_Id = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -231,7 +230,7 @@ namespace StudyCESI.Model.Migrations
                         column: x => x.Subject_SubjectId,
                         principalTable: "Subjects",
                         principalColumn: "SubjectId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Questions_TypeQuestions_TypeQuestion_TypeQuestionId",
                         column: x => x.TypeQuestion_TypeQuestionId,
@@ -239,8 +238,8 @@ namespace StudyCESI.Model.Migrations
                         principalColumn: "TypeQuestionId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Questions_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_Questions_AspNetUsers_AspNetUsers_Id",
+                        column: x => x.AspNetUsers_Id,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -255,10 +254,9 @@ namespace StudyCESI.Model.Migrations
                     NumberTries = table.Column<int>(nullable: false),
                     BestNote = table.Column<int>(nullable: false),
                     IsValid = table.Column<bool>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false),
-                    AspNetUsers_Id = table.Column<int>(nullable: true),
-                    UserId1 = table.Column<string>(nullable: true),
-                    Exam_ExamId = table.Column<int>(nullable: true)
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 7, 33, 89, DateTimeKind.Local)),
+                    AspNetUsers_Id = table.Column<string>(nullable: true),
+                    Exam_ExamId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -268,10 +266,10 @@ namespace StudyCESI.Model.Migrations
                         column: x => x.Exam_ExamId,
                         principalTable: "Exams",
                         principalColumn: "ExamId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserExams_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_UserExams_AspNetUsers_AspNetUsers_Id",
+                        column: x => x.AspNetUsers_Id,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -284,8 +282,8 @@ namespace StudyCESI.Model.Migrations
                     BoolAnswerId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Answer = table.Column<bool>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false),
-                    Question_QuestionId = table.Column<int>(nullable: true)
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 7, 33, 88, DateTimeKind.Local)),
+                    Question_QuestionId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -295,7 +293,7 @@ namespace StudyCESI.Model.Migrations
                         column: x => x.Question_QuestionId,
                         principalTable: "Questions",
                         principalColumn: "QuestionId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -306,8 +304,8 @@ namespace StudyCESI.Model.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Answer = table.Column<string>(nullable: true),
                     IsRight = table.Column<bool>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false),
-                    Question_QuestionId = table.Column<int>(nullable: true)
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 7, 33, 88, DateTimeKind.Local)),
+                    Question_QuestionId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -317,7 +315,7 @@ namespace StudyCESI.Model.Migrations
                         column: x => x.Question_QuestionId,
                         principalTable: "Questions",
                         principalColumn: "QuestionId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -326,9 +324,9 @@ namespace StudyCESI.Model.Migrations
                 {
                     ExamQuestionId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreationDate = table.Column<DateTime>(nullable: false),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 7, 33, 88, DateTimeKind.Local)),
                     Exam_ExamId = table.Column<int>(nullable: true),
-                    Question_QuestionId = table.Column<int>(nullable: true)
+                    Question_QuestionId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -344,7 +342,7 @@ namespace StudyCESI.Model.Migrations
                         column: x => x.Question_QuestionId,
                         principalTable: "Questions",
                         principalColumn: "QuestionId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -356,8 +354,8 @@ namespace StudyCESI.Model.Migrations
                     Answer = table.Column<string>(nullable: true),
                     HoleLimitStart = table.Column<int>(nullable: false),
                     HoleLimitEnd = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false),
-                    Question_QuestionId = table.Column<int>(nullable: true)
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 7, 33, 89, DateTimeKind.Local)),
+                    Question_QuestionId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -367,7 +365,7 @@ namespace StudyCESI.Model.Migrations
                         column: x => x.Question_QuestionId,
                         principalTable: "Questions",
                         principalColumn: "QuestionId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -377,9 +375,9 @@ namespace StudyCESI.Model.Migrations
                     UserExamAnswerId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Answer = table.Column<string>(nullable: true),
-                    CreationDate = table.Column<DateTime>(nullable: false),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 7, 33, 89, DateTimeKind.Local)),
                     UserExam_UserExamId = table.Column<int>(nullable: true),
-                    Question_QuestionId = table.Column<int>(nullable: true)
+                    Question_QuestionId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -389,7 +387,7 @@ namespace StudyCESI.Model.Migrations
                         column: x => x.Question_QuestionId,
                         principalTable: "Questions",
                         principalColumn: "QuestionId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserExamAnswers_UserExams_UserExam_UserExamId",
                         column: x => x.UserExam_UserExamId,
@@ -458,9 +456,9 @@ namespace StudyCESI.Model.Migrations
                 column: "Question_QuestionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Exams_UserId1",
+                name: "IX_Exams_AspNetUsers_Id",
                 table: "Exams",
-                column: "UserId1");
+                column: "AspNetUsers_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HoleAnswers_Question_QuestionId",
@@ -478,9 +476,9 @@ namespace StudyCESI.Model.Migrations
                 column: "TypeQuestion_TypeQuestionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Questions_UserId1",
+                name: "IX_Questions_AspNetUsers_Id",
                 table: "Questions",
-                column: "UserId1");
+                column: "AspNetUsers_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserExamAnswers_Question_QuestionId",
@@ -498,9 +496,9 @@ namespace StudyCESI.Model.Migrations
                 column: "Exam_ExamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserExams_UserId1",
+                name: "IX_UserExams_AspNetUsers_Id",
                 table: "UserExams",
-                column: "UserId1");
+                column: "AspNetUsers_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

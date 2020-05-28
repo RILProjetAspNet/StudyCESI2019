@@ -15,6 +15,8 @@ namespace StudyCESI.Model.Entities
         [DisplayName("Libellé")]
         public string Wording { get; set; }
 
+
+        [DisplayName("Date de création")]
         public DateTime CreationDate { get; set; }
     }
 }

@@ -28,10 +28,12 @@ namespace StudyCESI.Model.Entities
         [DisplayName("Date limite de l'examen")]
         public DateTime EndDate { get; set; }
 
-        public DateTime CreationDate { get; set; }
 
         [Column("AspNetUsers_Id")]
         public string UserId { get; set; }
         public User User { get; set; }
+
+        [DisplayName("Date de création")]
+        public DateTime CreationDate { get; set; }
     }
 }

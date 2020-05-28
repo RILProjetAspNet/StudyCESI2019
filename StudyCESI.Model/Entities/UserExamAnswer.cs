@@ -13,8 +13,6 @@ namespace StudyCESI.Model.Entities
         [DisplayName("Réponse")]
         public string Answer { get; set; }
 
-        public DateTime CreationDate { get; set; }
-
         [Column("UserExam_UserExamId")]
         public int? UserExamId { get; set; }
         public UserExam UserExam { get; set; }
@@ -23,6 +21,7 @@ namespace StudyCESI.Model.Entities
         public int QuestionId { get; set; }
         public Question Question { get; set; }
 
-
+        [DisplayName("Date de création")]
+        public DateTime CreationDate { get; set; }
     }
 }

@@ -18,18 +18,21 @@ namespace StudyCESI.Model.Entities
         [Range(1, 20)]
         public int Mark { get; set; }
 
-        public DateTime CreationDate { get; set; }
-
         [Column("TypeQuestion_TypeQuestionId")]
+        [DisplayName("Type de question")]
         public int? TypeQuestionId { get; set; }
         public TypeQuestion TypeQuestion { get; set; }
 
         [Column("Subject_SubjectId")]
+        [DisplayName("Sujet")]
         public int SubjectId { get; set; }
         public Subject Subject { get; set; }
 
         [Column("AspNetUsers_Id")]
         public string UserId { get; set; }
         public User User { get; set; }
+
+        [DisplayName("Date de création")]
+        public DateTime CreationDate { get; set; }
     }
 }

@@ -199,8 +199,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 85, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 15, 7, 33, 88, DateTimeKind.Local));
 
                     b.Property<int>("QuestionId")
                         .HasColumnName("Question_QuestionId");
@@ -222,8 +221,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 85, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 15, 7, 33, 88, DateTimeKind.Local));
 
                     b.Property<bool>("IsRight");
 
@@ -245,8 +243,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 85, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 15, 7, 33, 88, DateTimeKind.Local));
 
                     b.Property<DateTime>("Duration");
 
@@ -276,8 +273,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 85, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 15, 7, 33, 88, DateTimeKind.Local));
 
                     b.Property<int?>("ExamId")
                         .HasColumnName("Exam_ExamId");
@@ -304,8 +300,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 86, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 15, 7, 33, 89, DateTimeKind.Local));
 
                     b.Property<int>("HoleLimitEnd");
 
@@ -329,8 +324,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 86, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 15, 7, 33, 89, DateTimeKind.Local));
 
                     b.Property<string>("Header");
 
@@ -364,8 +358,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 79, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 15, 7, 33, 85, DateTimeKind.Local));
 
                     b.Property<string>("Name");
 
@@ -382,8 +375,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 86, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 15, 7, 33, 89, DateTimeKind.Local));
 
                     b.Property<string>("Name");
 
@@ -404,8 +396,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 87, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 15, 7, 33, 89, DateTimeKind.Local));
 
                     b.Property<int>("ExamId")
                         .HasColumnName("Exam_ExamId");
@@ -436,8 +427,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Date de création")
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 14, 59, 26, 87, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2020, 5, 28, 15, 7, 33, 89, DateTimeKind.Local));
 
                     b.Property<int>("QuestionId")
                         .HasColumnName("Question_QuestionId");
