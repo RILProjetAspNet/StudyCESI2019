@@ -10,10 +10,13 @@ namespace StudyCESI.Model.Entities
     {
         public int UserExamId { get; set; }
 
+        [DisplayName("Nombre d'essai")]
         public int NumberTries { get; set; }
 
+        [DisplayName("Meilleure note")]
         public int BestNote { get; set; }
 
+        [DisplayName("Est valide")]
         public bool IsValid { get; set; }
 
         public DateTime CreationDate { get; set; }

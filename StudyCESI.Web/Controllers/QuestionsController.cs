@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StudyCESI.Model.Data;
 using StudyCESI.Model.Entities;
+using StudyCESI.Web.Models;
 
 namespace StudyCESI.Web.Controllers
 {
@@ -46,12 +47,15 @@ namespace StudyCESI.Web.Controllers
             return View(question);
         }
 
+
         // GET: Questions/Create
         public IActionResult Create()
         {
-            ViewData["SubjectId"] = new SelectList(_context.Subjects, "SubjectId", "SubjectId");
-            ViewData["TypeQuestionId"] = new SelectList(_context.TypeQuestions, "TypeQuestionId", "TypeQuestionId");
-            return View();
+            return View(new CreateOrUpdateQuestionViewModel
+            {
+                Subjects = _context.Subjects.ToList(),
+                TypeQuestions = _context.TypeQuestions.ToList()
+            }) ;
         }
 
         // POST: Questions/Create
@@ -70,6 +74,8 @@ namespace StudyCESI.Web.Controllers
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "SubjectId", "SubjectId", question.SubjectId);
             ViewData["TypeQuestionId"] = new SelectList(_context.TypeQuestions, "TypeQuestionId", "TypeQuestionId", question.TypeQuestionId);
             return View(question);
+
+            // TODO :: Return the right view to fill the answer => TypeQuestion
         }
 
         // GET: Questions/Edit/5
@@ -85,9 +91,16 @@ namespace StudyCESI.Web.Controllers
             {
                 return NotFound();
             }
+
+            return View(new CreateOrUpdateQuestionViewModel
+            {
+                Subjects = _context.Subjects.ToList(),
+                TypeQuestions = _context.TypeQuestions.ToList()
+            });
+            /*
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "SubjectId", "SubjectId", question.SubjectId);
             ViewData["TypeQuestionId"] = new SelectList(_context.TypeQuestions, "TypeQuestionId", "TypeQuestionId", question.TypeQuestionId);
-            return View(question);
+            return View(question);*/
         }
 
         // POST: Questions/Edit/5

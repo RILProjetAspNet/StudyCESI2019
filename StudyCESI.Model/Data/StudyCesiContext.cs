@@ -32,47 +32,58 @@ namespace StudyCESI.Model.Data
 
             modelBuilder.Entity<Subject>()
                 .Property(s => s.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValue(DateTime.Now)
+                .HasColumnName("Date de création");
 
             modelBuilder.Entity<BoolAnswer>()
                 .Property(b => b.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValue(DateTime.Now)
+                .HasColumnName("Date de création");
 
             modelBuilder.Entity<ChoiceAnswer>()
                 .Property(c => c.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValue(DateTime.Now)
+                .HasColumnName("Date de création");
 
             modelBuilder.Entity<Exam>()
                 .Property(e => e.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValue(DateTime.Now)
+                .HasColumnName("Date de création");
 
             modelBuilder.Entity<ExamQuestion>()
                 .Property(e => e.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValue(DateTime.Now)
+                .HasColumnName("Date de création");
 
             modelBuilder.Entity<HoleAnswer>()
                 .Property(h => h.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValue(DateTime.Now)
+                .HasColumnName("Date de création");
 
             modelBuilder.Entity<Question>()
                .Property(q => q.CreationDate)
-               .HasDefaultValue(DateTime.Now);
+                .HasDefaultValue(DateTime.Now)
+                .HasColumnName("Date de création");
 
             modelBuilder.Entity<HoleAnswer>()
                 .Property(h => h.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValue(DateTime.Now)
+                .HasColumnName("Date de création");
 
             modelBuilder.Entity<TypeQuestion>()
                 .Property(t => t.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValue(DateTime.Now)
+                .HasColumnName("Date de création");
 
             modelBuilder.Entity<UserExam>()
                 .Property(u => u.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValue(DateTime.Now)
+                .HasColumnName("Date de création");
 
             modelBuilder.Entity<UserExamAnswer>()
                 .Property(u => u.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValue(DateTime.Now)
+                .HasColumnName("Date de création");
         }
     }
 }

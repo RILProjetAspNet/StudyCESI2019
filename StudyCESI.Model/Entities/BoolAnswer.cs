@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -9,6 +10,7 @@ namespace StudyCESI.Model.Entities
     {
         public int BoolAnswerId { get; set; }
 
+        [DisplayName("Réponse")]
         public bool Answer { get; set; }
 
         public DateTime CreationDate { get; set; }
