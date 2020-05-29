@@ -10,5 +10,6 @@ namespace StudyCESI.Web.Models
     {
         public IEnumerable<Question> Questions { get; set; }
         public IEnumerable<ChoiceAnswer> ChoiceAnswers { get; set; }
+        public List<Exam> Exam { get; set; }
     }
 }

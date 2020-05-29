@@ -142,9 +142,14 @@ namespace StudyCESI.Web.Controllers
         [Authorize(Policy = "EstEtudiant")]
         public async Task<IActionResult> Pass(int? id)
         {
+            var exams = from exam in _context.Exams
+                        where exam.ExamId == id
+                        select exam;
+
             var model = new PassExamViewModel
             {
-                Questions = await _context.ExamQuestions.Include(q => q.Question).Where(e => e.ExamId == id).Select(e => e.Question).ToListAsync()
+                Questions = await _context.ExamQuestions.Include(q => q.Question).Where(e => e.ExamId == id).Select(e => e.Question).ToListAsync(),
+                Exam = exams.ToList()
             };
 
             for (int i = 0; i < model.Questions.Count(); i++)
