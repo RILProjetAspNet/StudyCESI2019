@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace StudyCESI.Web.Models
 {
-    public class CreateOrUpdateExamViewModel
+    public class CreateOrUpdateExamViewModel 
     {
         public Exam Exam { get; set; }
 
         public List<Question> Questions { get; set; }
+
+        public List<Subject> Subjects { get; set; }
+
     }
 }
