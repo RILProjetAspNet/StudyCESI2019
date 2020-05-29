@@ -46,6 +46,70 @@
             </div>
         </form>
     </div>
+    @if (Model.Question.TypeQuestion.Name == "VraiFaux")
+    {
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BoolAnswers[0].Answer)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.BoolAnswers)
+                    {
+                        <tr>
+                            @if (item.Answer)
+                            {
+                                <td>
+                                    Vrai
+                                </td>
+
+                            }
+                            else
+                            {
+                                <td>
+                                    Faux
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else if (Model.Question.TypeQuestion.Name == "Unique" || Model.Question.TypeQuestion.Name == "Multiple")
+    {
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChoiceAnswers[0].Answer)
+                        </th>
+                        <th>
+                        @Html.DisplayNameFor(model => model.ChoiceAnswers[0].IsRight)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ChoiceAnswers)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Answer)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsRight)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
 </div>
 
 <div class="link-back-list">

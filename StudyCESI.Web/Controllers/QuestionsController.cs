@@ -49,7 +49,14 @@ namespace StudyCESI.Web.Controllers
                 return NotFound();
             }
 
-            return View(question);
+            return View(new CreateOrUpdateQuestionViewModel
+            {
+                Question = question,
+                BoolAnswers = _context.BoolAnswers.Where(eq => eq.QuestionId == id).ToList(),
+                ChoiceAnswers = _context.ChoiceAnswers.Where(eq => eq.QuestionId == id).ToList(),
+                Subjects = _context.Subjects.ToList(),
+                TypeQuestions = _context.TypeQuestions.ToList()
+            });
         }
 
 
@@ -223,7 +230,7 @@ namespace StudyCESI.Web.Controllers
                 return NotFound();
             }
 
-            var question = await _context.Questions.FindAsync(id);
+            var question = await _context.Questions.Include("TypeQuestion").SingleOrDefaultAsync(i => i.QuestionId == id);
             if (question == null)
             {
                 return NotFound();
@@ -232,6 +239,8 @@ namespace StudyCESI.Web.Controllers
             return View(new CreateOrUpdateQuestionViewModel
             {
                 Question = question,
+                BoolAnswers = _context.BoolAnswers.Where(eq => eq.QuestionId == id).ToList(),
+                ChoiceAnswers = _context.ChoiceAnswers.Where(eq => eq.QuestionId == id).ToList(),
                 Subjects = _context.Subjects.ToList(),
                 TypeQuestions = _context.TypeQuestions.ToList()
             });
@@ -291,7 +300,14 @@ namespace StudyCESI.Web.Controllers
                 return NotFound();
             }
 
-            return View(question);
+            return View(new CreateOrUpdateQuestionViewModel
+            {
+                Question = question,
+                BoolAnswers = _context.BoolAnswers.Where(eq => eq.QuestionId == id).ToList(),
+                ChoiceAnswers = _context.ChoiceAnswers.Where(eq => eq.QuestionId == id).ToList(),
+                Subjects = _context.Subjects.ToList(),
+                TypeQuestions = _context.TypeQuestions.ToList()
+            });
         }
 
         // POST: Questions/Delete/5

@@ -1,4 +1,4 @@
-﻿@model StudyCESI.Model.Entities.Question
+﻿@model CreateOrUpdateQuestionViewModel
 
 @{
     ViewData["Title"] = "Détails question";
@@ -6,43 +6,108 @@
 
 <h2>Question</h2>
 
-<div>
-    <h4>Détails de la question</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Header)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Header)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Mark)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Mark)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CreationDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TypeQuestion)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TypeQuestion.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Subject)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Subject.Name)
-        </dd>
-    </dl>
-</div>
-<div class="link-back-list">
-    <a asp-action="Edit" asp-route-id="@Model.QuestionId">Modifier</a> |
-    <a asp-action="Index">Retour à la liste</a>
-</div>
+<div class="row">
+    <div class="col-md-6 form-exam">
+        <h4>Détails de la question</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Question.Header)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Question.Header)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Question.Mark)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Question.Mark)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Question.CreationDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Question.CreationDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Question.TypeQuestion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Question.TypeQuestion.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Question.Subject)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Question.Subject.Name)
+            </dd>
+        </dl>
+    </div>
+    @if (Model.Question.TypeQuestion.Name == "VraiFaux")
+    {
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BoolAnswers[0].Answer)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.BoolAnswers)
+                    {
+                        <tr>
+                            @if (item.Answer)
+                            {
+                                <td>
+                                    Vrai
+                                </td>
+
+                            }
+                            else
+                            {
+                                <td>
+                                    Faux
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else if (Model.Question.TypeQuestion.Name == "Unique" || Model.Question.TypeQuestion.Name == "Multiple")
+    {
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChoiceAnswers[0].Answer)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChoiceAnswers[0].IsRight)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ChoiceAnswers)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Answer)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsRight)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    <div class="link-back-list">
+        <a asp-action="Edit" asp-route-id="@Model.Question.QuestionId">Modifier</a> |
+        <a asp-action="Index">Retour à la liste</a>
+    </div>
