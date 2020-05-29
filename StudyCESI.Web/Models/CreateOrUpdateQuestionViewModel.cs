@@ -13,5 +13,9 @@ namespace StudyCESI.Web.Models
         public List<Subject> Subjects { get; set; }
 
         public List<TypeQuestion> TypeQuestions { get; set; }
+
+        public List<BoolAnswer> BoolAnswers { get; set; }
+
+        public List<ChoiceAnswer> ChoiceAnswers { get; set; }
     }
 }
