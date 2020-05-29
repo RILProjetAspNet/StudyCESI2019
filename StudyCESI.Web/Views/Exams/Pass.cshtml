@@ -57,7 +57,25 @@
 
             <div class="form-group">
                 <input type="submit" value="Valider l'examen" class="btn btn-default btn-create" />
+                <p><i>Il vous reste <span id="ExamDuration"></span> secondes pour valider le test</i></p>
             </div>
         </form>
     </div>
 </div>
+
+@section Scripts{
+    
+    <script type="text/javascript">
+
+        // Timeout Exam
+        let durationS = @Model.Exam.Duration * 60;
+        while (durationS != 0) {
+            setTimeout(() => {
+                durationS--;
+                console.log(durationS);
+                $("#ExamDuration").text(durationS);
+            }, 1000)
+        }
+        location.replace('Exam/Result/' + @Model.Exam.ExamId);
+    </script>
+}

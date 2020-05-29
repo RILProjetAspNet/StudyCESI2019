@@ -144,6 +144,7 @@ namespace StudyCESI.Web.Controllers
         {
             var model = new PassExamViewModel
             {
+                Exam = await _context.Exams.Where(e => e.ExamId == id).FirstOrDefaultAsync(),
                 Questions = await _context.ExamQuestions.Include(q => q.Question).Where(e => e.ExamId == id).Select(e => e.Question).ToListAsync()
             };
 
@@ -160,17 +161,6 @@ namespace StudyCESI.Web.Controllers
                 }
             }
 
-            foreach(var q in model.Questions)
-            {
-                var type = await _context.Questions.Include(t => t.TypeQuestion).Where(qu => qu.QuestionId == q.QuestionId).Select(e => e.TypeQuestion.Name).FirstOrDefaultAsync();
-
-                if (type == "Unique" || type == "Multiple")
-                {
-                    var answer = await _context.ChoiceAnswers.Where(a => a.QuestionId == q.QuestionId).FirstAsync();
-                    model.ChoiceAnswers.Append(answer);
-                }
-            }
-
             return View(model);
         }
 
@@ -180,13 +170,14 @@ namespace StudyCESI.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = "EstEtudiant")]
-        public async Task<IActionResult> Pass([Bind("ExamId,Name,SubjectId,NumberQuestions,Duration,NumberTriesAllow,EndDate,CreationDate,UserId")] Exam exam)
+        public async Task<IActionResult> Pass([Bind("UserExamAnswerId,Answer,UserExamId,QuestionId,CreationDate")] List<UserExamAnswer> UserExamAnswer)
         {
-            exam.UserId = _userManager.GetUserId(User);
+
+            UserExamAnswer.ElementAt(0).UserExamId = await _context.UserExams.Where(u => u.ExamId == 1).Select(u => u.UserExamId).FirstOrDefaultAsync();
 
             if (ModelState.IsValid)
             {
-                _context.Add(exam);
+               /* _context.Add(UserExamAnswer);
 
                 SelectRandomQuestion(exam);
                 await _context.SaveChangesAsync();
@@ -206,21 +197,22 @@ namespace StudyCESI.Web.Controllers
                     });
                     await _context.SaveChangesAsync();
                 }
+                */
 
-                return View(nameof(Details), new CreateOrUpdateExamViewModel
-                {
-                    Questions = _context.Questions.Include(e => e.TypeQuestion).ToList(),
-                    Subjects = _context.Subjects.ToList(),
-                    Exam = exam
-                });
+                return View(nameof(ResultPass), 2);
+
             }
 
-            return View(new CreateOrUpdateExamViewModel
-            {
-                Questions = _context.Questions.Include(e => e.TypeQuestion).ToList(),
-                Subjects = _context.Subjects.ToList(),
-                Exam = exam
-            });
+            return View();
+        }
+
+        // GET: Exams/ResultPass
+        [Authorize(Policy = "EstEtudiant")]
+        public async Task<IActionResult> ResultPass(int? id)
+        {
+
+
+            return View();
         }
 
         private async void SelectRandomQuestion(Exam exam)
