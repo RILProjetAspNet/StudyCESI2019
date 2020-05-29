@@ -45,12 +45,6 @@
             <dd>
                 @Html.DisplayFor(model => model.Question.Subject.Name)
             </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Question.User)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Question.User.UserName)
-            </dd>
         </dl>
     </div>
 
@@ -63,95 +57,92 @@
 
             <form asp-action="CreateBoolAnswer">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
+                <div class="form-group" style="display: flex">
                     <label asp-for="BoolAnswer.Answer" class="control-label">La réponse est vraie ?</label>
-                    <input asp-for="BoolAnswer.Answer" class="form-control" />
+                    <input asp-for="BoolAnswer.Answer" style="margin-left: 10px" />
                     <span asp-validation-for="BoolAnswer.Answer" class="text-danger"></span>
                 </div>
                 <input type="hidden" asp-for="BoolAnswer.QuestionId" value="@Model.Question.QuestionId" />
                 <div class="form-group">
-                    <input type="submit" value="Ajouter" class="btn btn-default" />
+                    <input type="submit" value="Ajouter" class="btn btn-default btn-create" />
                 </div>
             </form>
         }
         else if (Model.IsChoiceAnswer)
         {
-        if (Model.ListChoiceAnswer != null)
-        {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(m => m.ChoiceAnswer.Answer)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(m => m.ChoiceAnswer.IsRight)
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (ChoiceAnswer item in Model.ListChoiceAnswer)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Answer)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsRight)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        }
-            
-        <!-- CHOICE -->
-        <form asp-action="CreateChoiceAnswer">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ChoiceAnswer.Answer" class="control-label"></label>
-                <input asp-for="ChoiceAnswer.Answer" class="form-control" />
-                <span asp-validation-for="ChoiceAnswer.Answer" class="text-danger"></span>
-            </div>
-            @if ((bool)ViewData["ChoiceAnswersIsRight"] == false)
+            if (Model.ListChoiceAnswer != null)
             {
-                <div class="form-group">
-                    <label asp-for="ChoiceAnswer.IsRight" class="control-label"></label>
-                    <input asp-for="ChoiceAnswer.IsRight" class="form-control" />
-                    <span asp-validation-for="ChoiceAnswer.IsRight" class="text-danger"></span>
-                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(m => m.ChoiceAnswer.Answer)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(m => m.ChoiceAnswer.IsRight)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (ChoiceAnswer item in Model.ListChoiceAnswer)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Answer)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsRight)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             }
-            <input type="hidden" asp-for="ChoiceAnswer.QuestionId" value="@Model.Question.QuestionId" />
-            <div class="form-group">
-                <input type="submit" value="Ajouter" class="btn btn-default" />
-            </div>
-        </form>
-                    
+
+            <!-- CHOICE -->
+            <form asp-action="CreateChoiceAnswer">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ChoiceAnswer.Answer" class="control-label"></label>
+                    <input asp-for="ChoiceAnswer.Answer" class="form-control" />
+                    <span asp-validation-for="ChoiceAnswer.Answer" class="text-danger"></span>
+                </div>
+                @if ((bool)ViewData["ChoiceAnswersIsRight"] == false)
+                {
+                    <div class="form-group" style="display: flex">
+                        <label asp-for="ChoiceAnswer.IsRight" class="control-label"></label>
+                        <input asp-for="ChoiceAnswer.IsRight" style="margin-left: 10px"/>
+                        <span asp-validation-for="ChoiceAnswer.IsRight" class="text-danger"></span>
+                    </div>
+                }
+                <input type="hidden" asp-for="ChoiceAnswer.QuestionId" value="@Model.Question.QuestionId" />
+                <div class="form-group">
+                    <input type="submit" value="Ajouter" class="btn btn-default btn-create" />
+                </div>
+            </form>
+
         }
         else if (Model.IsHoleAnswer)
         {
-        <!--HOLE -->
-        <form asp-action="CreateHoleAnswer">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Question.Header" class="control-label">Rajouter des [] pour encadrer la valeur du trou</label>
-                <input asp-for="Question.Header" asp-route="questionHeader" class="form-control" />
-                <span asp-validation-for="Question.Header" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="Question.QuestionId" value="@Model.Question.QuestionId" />
-            <div class="form-group">
-                <input type="submit" value="Ajouter" class="btn btn-default" />
-            </div>
-        </form>
+            <!--HOLE -->
+            <form asp-action="CreateHoleAnswer">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Question.Header" class="control-label">Rajouter des [] pour encadrer la valeur du trou</label>
+                    <input asp-for="Question.Header" asp-route="questionHeader" class="form-control" />
+                    <span asp-validation-for="Question.Header" class="text-danger"></span>
+                </div>
+                <input type="hidden" asp-for="Question.QuestionId" value="@Model.Question.QuestionId" />
+                <div class="form-group">
+                    <input type="submit" value="Ajouter" class="btn btn-default btn-create" />
+                </div>
+            </form>
         }
     </div>
 </div>
-<div>
+<div class="link-back-list">
+    <input type="button" value="Valider et retourner à la liste" onclick="location.href='@Url.Action("Index", "Questions")'" class="btn btn-default" /> |
+    <input type="hidden" asp-for="Question.QuestionId" />
+    <a asp-action="Delete" asp-route-id="@Model.Question.QuestionId">Supprimer</a> |
     <a asp-action="Edit" asp-route-id="@Model.Question.QuestionId">Modifier</a> |
-
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Question.QuestionId" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Retour à la liste</a>
-    </form>
 </div>
