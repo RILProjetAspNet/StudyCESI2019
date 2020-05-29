@@ -46,6 +46,12 @@ namespace StudyCESI.Web
 
             services.AddScoped<IUserClaimsPrincipalFactory<User>, MyUserClaimsPrincipalFactory>();
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("EstEnseignant", policy => policy.RequireClaim("Role", "Enseignant"));
+                options.AddPolicy("EstEtudiant", policy => policy.RequireClaim("Role", "Etudiant"));
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
