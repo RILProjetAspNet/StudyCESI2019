@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace StudyCESI.Web.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "EstEnseignant")]
     public class QuestionsController : Controller
     {
         private readonly StudyCesiContext _context;

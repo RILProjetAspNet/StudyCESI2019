@@ -1,7 +1,7 @@
 ﻿@model CreateOrUpdateQuestionViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Modification question";
 }
 
 <h2>Question</h2>
@@ -26,18 +26,18 @@
             <div class="form-group">
                 <label asp-for="Question.TypeQuestionId" class="control-label"></label>
                 <select asp-for="Question.TypeQuestionId" class="form-control">
-                    @foreach (var store in Model.TypeQuestions)
+                    @foreach (var item in Model.TypeQuestions)
                     {
-                        <option value="@store.TypeQuestionId">@store.Name</option>
+                        <option value="@item.TypeQuestionId">@item.Name</option>
                     }
                 </select>
             </div>
             <div class="form-group">
                 <label asp-for="Question.SubjectId" class="control-label"></label>
                 <select asp-for="Question.SubjectId" class="form-control">
-                    @foreach (var store in Model.Subjects)
+                    @foreach (var item in Model.Subjects)
                     {
-                        <option value="@store.SubjectId">@store.Name</option>
+                        <option value="@item.SubjectId">@item.Name</option>
                     }
                 </select>
             </div>

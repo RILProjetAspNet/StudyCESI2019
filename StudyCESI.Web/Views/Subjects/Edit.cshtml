@@ -1,7 +1,7 @@
 ﻿@model StudyCESI.Model.Entities.Subject
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Modification sujet";
 }
 
 <h2>Sujet</h2>
@@ -17,11 +17,6 @@
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreationDate" class="control-label"></label>
-                <input asp-for="CreationDate" class="form-control" />
-                <span asp-validation-for="CreationDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Enregistrer" class="btn btn-default btn-create" />

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<StudyCESI.Model.Entities.Subject>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Liste sujets";
 }
 
 <h2>Liste des sujets</h2>
@@ -22,20 +22,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.SubjectId">Modifier</a> |
-                <a asp-action="Details" asp-route-id="@item.SubjectId">Détails</a> |
-                <a asp-action="Delete" asp-route-id="@item.SubjectId">Supprimer</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.SubjectId">Modifier</a> |
+                    <a asp-action="Details" asp-route-id="@item.SubjectId">Détails</a> |
+                    <a asp-action="Delete" asp-route-id="@item.SubjectId">Supprimer</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+
+<div class="link-back-list">
+    <a href="@Url.Action("Index", "Questions")">Retour à la liste de questions</a>
+</div>

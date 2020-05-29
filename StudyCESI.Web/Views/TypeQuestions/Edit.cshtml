@@ -1,7 +1,7 @@
 ﻿@model StudyCESI.Model.Entities.TypeQuestion
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Modification type question";
 }
 
 <h2>Type de question</h2>
@@ -22,11 +22,6 @@
                 <label asp-for="Wording" class="control-label"></label>
                 <input asp-for="Wording" class="form-control" />
                 <span asp-validation-for="Wording" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreationDate" class="control-label"></label>
-                <input asp-for="CreationDate" class="form-control" />
-                <span asp-validation-for="CreationDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Enregistrer" class="btn btn-default btn-create" />

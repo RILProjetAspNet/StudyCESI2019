@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StudyCESI.Model.Migrations
 {
-    public partial class update_do : Migration
+    public partial class init_do : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

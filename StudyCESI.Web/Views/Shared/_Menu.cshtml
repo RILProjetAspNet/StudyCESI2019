@@ -18,10 +18,14 @@
             <ul class="nav navbar-nav">
                 <li><a asp-area="" asp-controller="Home" asp-action="Index">Accueil</a></li>
 
-                @if (SignInManager.IsSignedIn(User))
+                @if (SignInManager.IsSignedIn(User) && User.FindFirst("Role").Value == "Enseignant")
                 {
                     <li><a asp-area="" asp-controller="Exams" asp-action="Index">Examen</a></li>
                     <li><a asp-area="" asp-controller="Questions" asp-action="Index">Question</a></li>
+                }
+                else if (SignInManager.IsSignedIn(User) && User.FindFirst("Role").Value == "Etudiant")
+                {
+                    <li><a asp-area="" asp-controller="Exams" asp-action="Index">Examen</a></li>
                 }
             </ul>
             <partial name="_LoginPartial" />
