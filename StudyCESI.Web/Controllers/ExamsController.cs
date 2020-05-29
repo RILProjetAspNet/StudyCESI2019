@@ -19,6 +19,10 @@ namespace StudyCESI.Web.Controllers
         private readonly StudyCesiContext _context;
         private readonly UserManager<User> _userManager;
 
+        public ExamsController(StudyCesiContext context)
+        {
+            _context = context;
+        }
         public ExamsController(StudyCesiContext context, UserManager<User> userManager)
         {
             _context = context;
