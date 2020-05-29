@@ -32,10 +32,12 @@ namespace StudyCESI.Web.Controllers
         // GET: Exams
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Exams.ToListAsync());
+            var studyCesiContext = _context.Exams.Include(e => e.Subject).Include(e => e.User);
+            return View(await studyCesiContext.ToListAsync());
         }
 
         // GET: Exams/Details/5
+        [Authorize(Policy = "EstEnseignant")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -50,10 +52,16 @@ namespace StudyCESI.Web.Controllers
                 return NotFound();
             }
 
-            return View(exam);
+            return View(new CreateOrUpdateExamViewModel
+            {
+                Questions = _context.ExamQuestions.Where(eq => eq.ExamId == exam.ExamId).Select(eq => eq.Question).Include(e => e.TypeQuestion).ToList(),
+                Subjects = _context.Subjects.ToList(),
+                Exam = exam
+            });
         }
 
         // GET: Exams/Create
+        [Authorize(Policy = "EstEnseignant")]
         public IActionResult Create()
         {
             return View(new CreateOrUpdateExamViewModel 
@@ -68,6 +76,7 @@ namespace StudyCESI.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "EstEnseignant")]
         public async Task<IActionResult> Create([Bind("ExamId,Name,SubjectId,NumberQuestions,Duration,NumberTriesAllow,EndDate,CreationDate,UserId")] Exam exam)
         {
             exam.UserId = _userManager.GetUserId(User);
@@ -84,7 +93,7 @@ namespace StudyCESI.Web.Controllers
 
             return View(new CreateOrUpdateExamViewModel
             {
-                Questions = _context.Questions.ToList(),
+                Questions = _context.Questions.Include(e => e.TypeQuestion).ToList(),
                 Subjects = _context.Subjects.ToList(),
                 Exam = exam
             }); ;
@@ -105,7 +114,8 @@ namespace StudyCESI.Web.Controllers
             }
         }
 
-        // GET: Exams/Edit/5
+        // GET: Exams/Edit/
+        [Authorize(Policy = "EstEnseignant")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -121,7 +131,7 @@ namespace StudyCESI.Web.Controllers
 
             return View(new CreateOrUpdateExamViewModel
             {
-                Questions = _context.ExamQuestions.Where(eq => eq.ExamId == exam.ExamId).Select(eq => eq.Question).ToList(),
+                Questions = _context.ExamQuestions.Where(eq => eq.ExamId == exam.ExamId).Select(eq => eq.Question).Include(e => e.TypeQuestion).ToList(),
                 Subjects = _context.Subjects.ToList(),
                 Exam = exam
             });
@@ -132,6 +142,7 @@ namespace StudyCESI.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "EstEnseignant")]
         public async Task<IActionResult> Edit(int id, [Bind("ExamId,Name,NumberQuestions,Duration,NumberTriesAllow,EndDate,CreationDate,UserId")] Exam exam)
         {
             if (id != exam.ExamId)
@@ -169,6 +180,7 @@ namespace StudyCESI.Web.Controllers
         }
 
         // GET: Exams/Delete/5
+        [Authorize(Policy = "EstEnseignant")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

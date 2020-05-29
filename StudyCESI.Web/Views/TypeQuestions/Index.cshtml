@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<StudyCESI.Model.Entities.TypeQuestion>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Liste type question";
 }
 
 <h2>Liste des types de question</h2>
@@ -45,3 +45,7 @@
 }
     </tbody>
 </table>
+
+<div class="link-back-list">
+    <a href="@Url.Action("Index", "Questions")">Retour à la liste de questions</a>
+</div>

@@ -1,7 +1,7 @@
 ﻿@model StudyCESI.Model.Entities.Question
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Suppression question";
 }
 
 <h2>Question</h2>
@@ -52,6 +52,6 @@
     <form asp-action="Delete" class="link-back-list">
         <input type="hidden" asp-for="QuestionId" />
         <input type="submit" value="Supprimer" class="btn btn-default btn-delete" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">Retour à la liste</a>
     </form>
 </div>

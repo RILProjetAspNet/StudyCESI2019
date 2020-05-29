@@ -21,11 +21,13 @@ namespace StudyCESI.Model.Entities
         [Column("TypeQuestion_TypeQuestionId")]
         [DisplayName("Type de question")]
         public int? TypeQuestionId { get; set; }
+        [DisplayName("Type de question")]
         public TypeQuestion TypeQuestion { get; set; }
 
         [Column("Subject_SubjectId")]
         [DisplayName("Sujet")]
         public int SubjectId { get; set; }
+        [DisplayName("Sujet")]
         public Subject Subject { get; set; }
 
         [Column("AspNetUsers_Id")]

@@ -23,6 +23,8 @@ namespace StudyCESI.Model.Data
         {
             var identity = await base.GenerateClaimsAsync(user);
             identity.AddClaim(new Claim("Role", user.Role ?? ""));
+            identity.AddClaim(new Claim("FirstName", user.FirstName ?? ""));
+            identity.AddClaim(new Claim("LastName", user.LastName ?? ""));
             return identity;
         }
     }

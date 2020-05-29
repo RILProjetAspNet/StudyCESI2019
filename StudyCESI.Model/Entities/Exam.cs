@@ -19,18 +19,18 @@ namespace StudyCESI.Model.Entities
         public int SubjectId { get; set; }
         public Subject Subject { get; set; }
 
-        [DisplayName("Nombre de questions")]
+        [DisplayName("Nb de questions")]
         [Range(1, 100)]
         public int NumberQuestions { get; set; }
 
-        [DisplayName("Durée de l'examen")]
+        [DisplayName("Durée (en mn)")]
         public int Duration { get; set; }
 
-        [DisplayName("Nombre de tentatives autorisées")]
+        [DisplayName("Nb de tentatives autorisées")]
         [Range(1, 10)]
         public int  NumberTriesAllow { get; set; }
 
-        [DisplayName("Date limite de l'examen")]
+        [DisplayName("Date limite")]
         public DateTime EndDate { get; set; }
 
 

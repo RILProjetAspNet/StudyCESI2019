@@ -1,54 +1,91 @@
-﻿@model StudyCESI.Model.Entities.Exam
+﻿@model CreateOrUpdateExamViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Détails examen";
 }
 
 <h2>Examen</h2>
 
-<div class="form-content">
-    <h4>Détails de l'examen</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberQuestions)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NumberQuestions)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberTriesAllow)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NumberTriesAllow)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CreationDate)
-        </dd>
-    </dl>
+<div class="row">
+    <div class="col-md-6 form-exam">
+        <h4>Détails de l'examen</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Exam.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Exam.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Exam.NumberQuestions)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Exam.NumberQuestions)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Exam.Duration)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Exam.Duration)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Exam.NumberTriesAllow)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Exam.NumberTriesAllow)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Exam.EndDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Exam.EndDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Exam.CreationDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Exam.CreationDate)
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-6">
+        <h4>Questions de l'examen</h4>
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Questions[1].Header)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Questions[1].Mark)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Questions[1].TypeQuestion)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Questions)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Header)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mark)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypeQuestion.Name)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
 <div class="link-back-list">
-    <a asp-action="Edit" asp-route-id="@Model.ExamId">Modifier</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Exam.ExamId">Modifier</a> |
     <a asp-action="Index">Retour à la liste</a>
 </div>
