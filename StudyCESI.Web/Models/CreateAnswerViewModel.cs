@@ -12,11 +12,14 @@ namespace StudyCESI.Web.Models
 
         public bool IsBoolAnswer { get; set; }
         public BoolAnswer BoolAnswer { get; set; }
+        public IEnumerable<BoolAnswer> ListBoolAnswer { get; set; }
 
         public bool IsChoiceAnswer { get; set; }
         public ChoiceAnswer ChoiceAnswer { get; set; }
+        public IEnumerable<ChoiceAnswer> ListChoiceAnswer { get; set; }
 
         public bool IsHoleAnswer { get; set; }
         public HoleAnswer HoleAnswer { get; set; }
+        public List<HoleAnswer> ListHoleAnswer { get; set; }
     }
 }

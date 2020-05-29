@@ -13,7 +13,7 @@ namespace StudyCESI.Model.Entities
         [DisplayName("Réponse")]
         public string Answer { get; set; }
 
-        [DisplayName("Est vrai")]
+        [DisplayName("Réponse juste")]
         public bool IsRight { get; set; }
 
 

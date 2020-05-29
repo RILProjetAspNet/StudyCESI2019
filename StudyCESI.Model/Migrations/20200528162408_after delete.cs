@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StudyCESI.Model.Migrations
 {
-    public partial class Init : Migration
+    public partial class afterdelete : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -58,7 +58,7 @@ namespace StudyCESI.Model.Migrations
                     SubjectId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 38, 9, 424, DateTimeKind.Local))
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 18, 24, 8, 669, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -73,7 +73,7 @@ namespace StudyCESI.Model.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Wording = table.Column<string>(nullable: true),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 38, 9, 431, DateTimeKind.Local))
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 18, 24, 8, 672, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -198,7 +198,7 @@ namespace StudyCESI.Model.Migrations
                     NumberTriesAllow = table.Column<int>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
                     AspNetUsers_Id = table.Column<string>(nullable: true),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 38, 9, 429, DateTimeKind.Local))
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 18, 24, 8, 671, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -222,7 +222,7 @@ namespace StudyCESI.Model.Migrations
                     TypeQuestion_TypeQuestionId = table.Column<int>(nullable: true),
                     Subject_SubjectId = table.Column<int>(nullable: false),
                     AspNetUsers_Id = table.Column<string>(nullable: true),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 38, 9, 430, DateTimeKind.Local))
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 18, 24, 8, 672, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -258,7 +258,7 @@ namespace StudyCESI.Model.Migrations
                     IsValid = table.Column<bool>(nullable: false),
                     AspNetUsers_Id = table.Column<string>(nullable: true),
                     Exam_ExamId = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 38, 9, 431, DateTimeKind.Local))
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 18, 24, 8, 672, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -285,7 +285,7 @@ namespace StudyCESI.Model.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Answer = table.Column<bool>(nullable: false),
                     Question_QuestionId = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 38, 9, 429, DateTimeKind.Local))
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 18, 24, 8, 671, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -307,7 +307,7 @@ namespace StudyCESI.Model.Migrations
                     Answer = table.Column<string>(nullable: true),
                     IsRight = table.Column<bool>(nullable: false),
                     Question_QuestionId = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 38, 9, 429, DateTimeKind.Local))
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 18, 24, 8, 671, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -328,7 +328,7 @@ namespace StudyCESI.Model.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Exam_ExamId = table.Column<int>(nullable: true),
                     Question_QuestionId = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 38, 9, 430, DateTimeKind.Local))
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 18, 24, 8, 672, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -357,7 +357,7 @@ namespace StudyCESI.Model.Migrations
                     HoleLimitStart = table.Column<int>(nullable: false),
                     HoleLimitEnd = table.Column<int>(nullable: false),
                     Question_QuestionId = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 38, 9, 430, DateTimeKind.Local))
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 18, 24, 8, 672, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -379,7 +379,7 @@ namespace StudyCESI.Model.Migrations
                     Answer = table.Column<string>(nullable: true),
                     UserExam_UserExamId = table.Column<int>(nullable: true),
                     Question_QuestionId = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 15, 38, 9, 431, DateTimeKind.Local))
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 18, 24, 8, 672, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
