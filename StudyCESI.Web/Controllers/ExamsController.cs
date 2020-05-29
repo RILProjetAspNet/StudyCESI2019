@@ -28,7 +28,8 @@ namespace StudyCESI.Web.Controllers
         // GET: Exams
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Exams.ToListAsync());
+            var studyCesiContext = _context.Exams.Include(e => e.Subject).Include(e => e.User);
+            return View(await studyCesiContext.ToListAsync());
         }
 
         // GET: Exams/Details/5
@@ -46,7 +47,12 @@ namespace StudyCESI.Web.Controllers
                 return NotFound();
             }
 
-            return View(exam);
+            return View(new CreateOrUpdateExamViewModel
+            {
+                Questions = _context.ExamQuestions.Where(eq => eq.ExamId == exam.ExamId).Select(eq => eq.Question).Include(e => e.TypeQuestion).ToList(),
+                Subjects = _context.Subjects.ToList(),
+                Exam = exam
+            });
         }
 
         // GET: Exams/Create
@@ -80,7 +86,7 @@ namespace StudyCESI.Web.Controllers
 
             return View(new CreateOrUpdateExamViewModel
             {
-                Questions = _context.Questions.ToList(),
+                Questions = _context.Questions.Include(e => e.TypeQuestion).ToList(),
                 Subjects = _context.Subjects.ToList(),
                 Exam = exam
             }); ;
@@ -117,7 +123,7 @@ namespace StudyCESI.Web.Controllers
 
             return View(new CreateOrUpdateExamViewModel
             {
-                Questions = _context.ExamQuestions.Where(eq => eq.ExamId == exam.ExamId).Select(eq => eq.Question).ToList(),
+                Questions = _context.ExamQuestions.Where(eq => eq.ExamId == exam.ExamId).Select(eq => eq.Question).Include(e => e.TypeQuestion).ToList(),
                 Subjects = _context.Subjects.ToList(),
                 Exam = exam
             });

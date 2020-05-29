@@ -9,7 +9,7 @@ namespace StudyCESI.Model.Entities
     {
         public int SubjectId { get; set; }
 
-        [DisplayName("Nom")]
+        [DisplayName("Sujet")]
         public string Name { get; set; }
 
 

@@ -43,8 +43,11 @@ body {
 /* Style des formulaires */
 .form-content {
     display: flex;
-    align-items: center;
     justify-content: center;
+}
+
+.form-exam {
+    border-right: 1px solid #101010;
 }
 
 .link-back-list {
