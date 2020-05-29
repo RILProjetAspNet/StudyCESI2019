@@ -124,7 +124,7 @@ namespace StudyCESI.Web.Controllers
 
                 return View(nameof(Details), new CreateOrUpdateExamViewModel
                 {
-                    Questions = _context.Questions.Include(e => e.TypeQuestion).ToList(),
+                    Questions = _context.ExamQuestions.Where(eq => eq.ExamId == exam.ExamId).Select(eq => eq.Question).Include(e => e.TypeQuestion).ToList(),
                     Subjects = _context.Subjects.ToList(),
                     Exam = exam
                 });

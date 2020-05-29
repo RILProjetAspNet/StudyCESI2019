@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StudyCESI.Web.Models;
-
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using StudyCESI.Model.Data;
 using StudyCESI.Model.Entities;
@@ -29,8 +29,19 @@ namespace StudyCESI.Web.Controllers
         {
             if (User.Identity.IsAuthenticated && User.FindFirst("Role").Value == "Enseignant")
             {
-                var exams = await _context.Exams.ToListAsync();
-                return View(exams);
+                var exams = from exam in _context.Exams
+                            where exam.UserId == _userManager.GetUserId(User)
+                            select exam;
+
+                var questions = from question in _context.Questions.Include(e => e.TypeQuestion).Include(s => s.Subject)
+                                where question.UserId == _userManager.GetUserId(User)
+                                select question;
+
+                return View(new IndexViewModel
+                {
+                    Exams = exams.ToList(),
+                    Questions = questions.ToList()
+                });
 
             }
             else if (User.Identity.IsAuthenticated && User.FindFirst("Role").Value == "Etudiant")
@@ -43,7 +54,10 @@ namespace StudyCESI.Web.Controllers
                                 && userExam.UserId == _userManager.GetUserId(User)
                             select exam;
 
-                return View(exams);
+                return View(new IndexViewModel
+                {
+                    Exams = exams.ToList()
+                });
             }
             else
             {
