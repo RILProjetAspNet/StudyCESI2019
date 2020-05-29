@@ -32,47 +32,47 @@ namespace StudyCESI.Model.Data
 
             modelBuilder.Entity<Subject>()
                 .Property(s => s.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValueSql("getdate()");
 
             modelBuilder.Entity<BoolAnswer>()
                 .Property(b => b.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValueSql("getdate()");
 
             modelBuilder.Entity<ChoiceAnswer>()
                 .Property(c => c.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValueSql("getdate()");
 
             modelBuilder.Entity<Exam>()
                 .Property(e => e.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValueSql("getdate()");
 
             modelBuilder.Entity<ExamQuestion>()
                 .Property(e => e.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValueSql("getdate()");
 
             modelBuilder.Entity<HoleAnswer>()
                 .Property(h => h.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValueSql("getdate()");
 
             modelBuilder.Entity<Question>()
                .Property(q => q.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValueSql("getdate()");
 
             modelBuilder.Entity<HoleAnswer>()
                 .Property(h => h.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValueSql("getdate()");
 
             modelBuilder.Entity<TypeQuestion>()
                 .Property(t => t.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValueSql("getdate()");
 
             modelBuilder.Entity<UserExam>()
                 .Property(u => u.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValueSql("getdate()");
 
             modelBuilder.Entity<UserExamAnswer>()
                 .Property(u => u.CreationDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValueSql("getdate()");
         }
     }
 }

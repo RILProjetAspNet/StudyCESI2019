@@ -13,7 +13,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Question.QuestionId" />
-            <div class="form-group">
+            <div class="form-group"> 
                 <label asp-for="Question.Header" class="control-label"></label>
                 <input asp-for="Question.Header" class="form-control" />
                 <span asp-validation-for="Question.Header" class="text-danger"></span>
