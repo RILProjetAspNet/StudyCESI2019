@@ -231,6 +231,7 @@ namespace StudyCESI.Web.Controllers
 
             return View(new CreateOrUpdateQuestionViewModel
             {
+                Question = question,
                 Subjects = _context.Subjects.ToList(),
                 TypeQuestions = _context.TypeQuestions.ToList()
             });
