@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Microsoft.AspNetCore.Identity;
 using Moq;
+using System.Threading;
 
 namespace StudyCESI.UnitTests
 {
@@ -32,19 +33,33 @@ namespace StudyCESI.UnitTests
 
 
             var exam = fixture.Create<Exam>();
-            context.Exams.Add(exam);          
+            context.Exams.Add(exam);
 
             context.SaveChanges();
-
             return context;
         }
 
-        [Fact]
+        private static UserManager<User> GetMockedUserManager()
+        {
+            var fixture = new Fixture();
+            var store = new Mock<IUserStore<User>>();
+            store.Setup(x => x.FindByIdAsync("123", CancellationToken.None))
+                .ReturnsAsync(new User()
+                {
+                    UserName = "test@email.com",
+                    Id = "123",
+                    Role ="Enseignant"
+                });
+            var userManager = new UserManager<User>(store.Object, null, null, null, null, null, null, null, null);
+            return userManager;
+        }
+
+       // ne peut pas etre tester car on utiliser User claims dans index pour filtrer par role 
         public async Task Return_Index_View_With_Exams_List()
         {
             // Arrange
             var fixture = new Fixture();
-            var ExamsController = new ExamsController(GetFakeContext());
+            var ExamsController = new ExamsController(GetFakeContext(), GetMockedUserManager());
 
 
             // Act
@@ -62,7 +77,7 @@ namespace StudyCESI.UnitTests
             // Arrange
             var fixture = new Fixture();
             var context = GetFakeContext();
-            var ExamsController = new ExamsController(context);
+            var ExamsController = new ExamsController(context, GetMockedUserManager());
             var exam = fixture.Create<Exam>();
             exam.ExamId = context.Exams.FirstOrDefault().ExamId;
             // Act
@@ -70,7 +85,7 @@ namespace StudyCESI.UnitTests
 
             // Assert
             Assert.NotNull(result);
-            var viewResult = Assert.IsAssignableFrom<ViewResult>(result);                
+            var viewResult = Assert.IsAssignableFrom<ViewResult>(result);
 
         }
 
@@ -80,7 +95,7 @@ namespace StudyCESI.UnitTests
             // Arrange
             var fixture = new Fixture();
             var context = GetFakeContext();
-            var ExamsController = new ExamsController(context);
+            var ExamsController = new ExamsController(context, GetMockedUserManager());
             var exam = fixture.Create<Exam>();
             exam.ExamId = context.Exams.FirstOrDefault().ExamId;
 
@@ -98,7 +113,7 @@ namespace StudyCESI.UnitTests
             // Arrange
             var fixture = new Fixture();
             var context = GetFakeContext();
-            var ExamsController = new ExamsController(context);
+            var ExamsController = new ExamsController(context, GetMockedUserManager());
             var exam = fixture.Create<Exam>();
             exam.ExamId = context.Exams.FirstOrDefault().ExamId;
 

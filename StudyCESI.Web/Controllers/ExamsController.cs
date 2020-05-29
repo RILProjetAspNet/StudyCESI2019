@@ -10,6 +10,7 @@ using StudyCESI.Model.Entities;
 using Microsoft.AspNetCore.Identity;
 using StudyCESI.Web.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Rewrite.Internal.UrlMatches;
 
 namespace StudyCESI.Web.Controllers
 {
@@ -19,10 +20,6 @@ namespace StudyCESI.Web.Controllers
         private readonly StudyCesiContext _context;
         private readonly UserManager<User> _userManager;
 
-        public ExamsController(StudyCesiContext context)
-        {
-            _context = context;
-        }
         public ExamsController(StudyCesiContext context, UserManager<User> userManager)
         {
             _context = context;
@@ -32,8 +29,30 @@ namespace StudyCESI.Web.Controllers
         // GET: Exams
         public async Task<IActionResult> Index()
         {
-            var studyCesiContext = _context.Exams.Include(e => e.Subject).Include(e => e.User);
-            return View(await studyCesiContext.ToListAsync());
+            if (User.FindFirst("Role").Value == "Enseignant")
+            {
+                var exams = await _context.Exams.ToListAsync();
+                return View("IndexEnseignant", exams);
+
+            }
+            else if (User.FindFirst("Role").Value == "Etudiant")
+            {
+                // Get exams who User can pass
+                var exams = from exam in _context.Exams
+                            join userExam in _context.UserExams
+                                on exam.ExamId equals userExam.ExamId
+                            where exam.EndDate > DateTime.Now
+                                && userExam.NumberTries < exam.NumberTriesAllow
+                                && userExam.UserId == _userManager.GetUserId(User)
+                            select exam;
+
+                return View("IndexEtudiant", exams);
+            }
+            else
+            {
+                return NotFound();
+            }
+
         }
 
         // GET: Exams/Details/5
@@ -64,7 +83,7 @@ namespace StudyCESI.Web.Controllers
         [Authorize(Policy = "EstEnseignant")]
         public IActionResult Create()
         {
-            return View(new CreateOrUpdateExamViewModel 
+            return View(new CreateOrUpdateExamViewModel
             {
                 Subjects = _context.Subjects.ToList(),
                 Questions = _context.Questions.ToList()
@@ -80,15 +99,36 @@ namespace StudyCESI.Web.Controllers
         public async Task<IActionResult> Create([Bind("ExamId,Name,SubjectId,NumberQuestions,Duration,NumberTriesAllow,EndDate,CreationDate,UserId")] Exam exam)
         {
             exam.UserId = _userManager.GetUserId(User);
-            var ok = _context.Questions.ToList();
+
             if (ModelState.IsValid)
             {
                 _context.Add(exam);
 
                 SelectRandomQuestion(exam);
-
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                //Create userExams for each user
+                var users = _context.Users.ToListAsync();
+
+                for (int i = 0; i < users.Result.Count(); i++)
+                {
+                    _context.Add(new UserExam
+                    {
+                        UserId = users.Result[i].Id,
+                        ExamId = exam.ExamId,
+                        NumberTries = 0,
+                        BestNote = 0,
+                        IsValid = false
+                    });
+                    await _context.SaveChangesAsync();
+                }
+
+                return View(nameof(Details), new CreateOrUpdateExamViewModel
+                {
+                    Questions = _context.Questions.Include(e => e.TypeQuestion).ToList(),
+                    Subjects = _context.Subjects.ToList(),
+                    Exam = exam
+                });
             }
 
             return View(new CreateOrUpdateExamViewModel
@@ -96,21 +136,20 @@ namespace StudyCESI.Web.Controllers
                 Questions = _context.Questions.Include(e => e.TypeQuestion).ToList(),
                 Subjects = _context.Subjects.ToList(),
                 Exam = exam
-            }); ;
+            });
         }
 
         private void SelectRandomQuestion(Exam exam)
         {
-            int i = 0;
-            foreach (var q in _context.Questions.Where(q=>q.SubjectId == exam.SubjectId).ToList())
+            var questions = _context.Questions.Where(q => q.SubjectId == exam.SubjectId).ToList();
+            int max = exam.NumberQuestions > questions.Count ? questions.Count : exam.NumberQuestions;
+
+            for (int i = 0; i < max; i++)
             {
-                if(i == exam.NumberQuestions)
-                {
-                    break;
-                }
+                var q = questions.FirstOrDefault();
                 var examQuestion = new ExamQuestion { Exam = exam, Question = q };
                 _context.Add(examQuestion);
-                i++;
+                questions.RemoveAt(0);
             }
         }
 
@@ -170,10 +209,10 @@ namespace StudyCESI.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            
+
             return View(new CreateOrUpdateExamViewModel
             {
-                Questions = _context.ExamQuestions.Where(eq => eq.ExamId == exam.ExamId).Select(eq =>eq.Question).ToList(),
+                Questions = _context.ExamQuestions.Where(eq => eq.ExamId == exam.ExamId).Select(eq => eq.Question).ToList(),
                 Subjects = _context.Subjects.ToList(),
                 Exam = exam
             });

@@ -57,22 +57,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
-
-            @if (User.FindFirst("Role").Value == "Enseignant")
-            {
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ExamId">Modifier</a> |
-                    <a asp-action="Details" asp-route-id="@item.ExamId">Détails</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ExamId">Supprimer</a>
-                </td>
-            }
-            else
-            {
-                <td>
-                    <a asp-action="Pass" asp-route-id="@item.ExamId">Passer l'examen</a>
-                </td>
-            }
-
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ExamId">Modifier</a> |
+                <a asp-action="Details" asp-route-id="@item.ExamId">Détails</a> |
+                <a asp-action="Delete" asp-route-id="@item.ExamId">Supprimer</a>
+            </td>
         </tr>
         }
     </tbody>

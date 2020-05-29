@@ -18,10 +18,6 @@ namespace StudyCESI.Web.Controllers
     {
         private readonly StudyCesiContext _context;
         private readonly UserManager<User> _userManager;
-        public QuestionsController(StudyCesiContext context)
-        {
-            _context = context;
-        }
 
         public QuestionsController(StudyCesiContext context, UserManager<User> userManager)
         {
@@ -235,13 +231,10 @@ namespace StudyCESI.Web.Controllers
 
             return View(new CreateOrUpdateQuestionViewModel
             {
+                Question = question,
                 Subjects = _context.Subjects.ToList(),
                 TypeQuestions = _context.TypeQuestions.ToList()
             });
-            /*
-            ViewData["SubjectId"] = new SelectList(_context.Subjects, "SubjectId", "SubjectId", question.SubjectId);
-            ViewData["TypeQuestionId"] = new SelectList(_context.TypeQuestions, "TypeQuestionId", "TypeQuestionId", question.TypeQuestionId);
-            return View(question);*/
         }
 
         // POST: Questions/Edit/5

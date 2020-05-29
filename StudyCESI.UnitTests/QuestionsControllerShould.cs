@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Microsoft.AspNetCore.Identity;
 using Moq;
+using System.Threading;
 
 namespace StudyCESI.UnitTests
 {
@@ -38,13 +39,27 @@ namespace StudyCESI.UnitTests
 
             return context;
         }
+        private static UserManager<User> GetMockedUserManager()
+        {
+            var fixture = new Fixture();
+            var store = new Mock<IUserStore<User>>();
+            store.Setup(x => x.FindByIdAsync("123", CancellationToken.None))
+                .ReturnsAsync(new User()
+                {
+                    UserName = "test@email.com",
+                    Id = "123",
+                    Role = "Enseignant"
+                });
+            var userManager = new UserManager<User>(store.Object, null, null, null, null, null, null, null, null);
+            return userManager;
+        }
 
         [Fact]
         public async Task Return_Index_View_With_Questions_List()
         {
             // Arrange
             var fixture = new Fixture();
-            var QuestionsController = new QuestionsController(GetFakeContext());
+            var QuestionsController = new QuestionsController(GetFakeContext(), GetMockedUserManager());
 
 
             // Act
@@ -62,7 +77,7 @@ namespace StudyCESI.UnitTests
             // Arrange
             var fixture = new Fixture();
             var context = GetFakeContext();
-            var QuestionsController = new QuestionsController(context);
+            var QuestionsController = new QuestionsController(context, GetMockedUserManager());
             var question = fixture.Create<Question>();
             question.QuestionId = context.Questions.FirstOrDefault().QuestionId;
             // Act
@@ -80,7 +95,7 @@ namespace StudyCESI.UnitTests
             // Arrange
             var fixture = new Fixture();
             var context = GetFakeContext();
-            var QuestionsController = new QuestionsController(context);
+            var QuestionsController = new QuestionsController(context, GetMockedUserManager());
             var question = fixture.Create<Question>();
             question.QuestionId = context.Questions.FirstOrDefault().QuestionId;
 
@@ -98,7 +113,7 @@ namespace StudyCESI.UnitTests
             // Arrange
             var fixture = new Fixture();
             var context = GetFakeContext();
-            var QuestionsController = new QuestionsController(context);
+            var QuestionsController = new QuestionsController(context, GetMockedUserManager());
             var question = fixture.Create<Question>();
             question.QuestionId = context.Questions.FirstOrDefault().QuestionId;
 

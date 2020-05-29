@@ -1,0 +1,59 @@
+﻿@model PassExamViewModel
+
+@{
+    ViewData["Title"] = "Liste examens";
+}
+
+<h2>Liste des examens</h2>
+
+<div class="row form-content">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @foreach (var question in Model.Questions)
+            {
+                @if (question.TypeQuestion.Name != "Trou")
+                {
+                    <div class="form-group">
+                        <h3>@question.Header</h3>
+                        <p><i>(@question.TypeQuestion.Wording - @question.Mark point))</i></p>
+                    </div>
+                }
+
+                @if (question.TypeQuestion.Name == "Unique")
+                {
+                    @foreach (var answer in Model.ChoiceAnswers)
+                    {
+                        <label for="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" class="control-label">@answer.Answer</label>
+                        <input name="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" type="radio" value="@answer.ChoiceAnswerId" />
+                    }
+                }
+                else if (question.TypeQuestion.Name == "Multiple")
+                {
+                    @foreach (var answer in Model.ChoiceAnswers)
+                    {
+                        <label for="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" class="control-label">@answer.Answer</label>
+                        <input name="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" type="checkbox" value="@answer.ChoiceAnswerId" />
+                    }
+                }
+                else if (question.TypeQuestion.Name == "VraiFaux")
+                {
+                    <div class="form-group">
+                        <label for="boolAnswer[@question.QuestionId]True" class="control-label">Vrai</label>
+                        <input type="radio" for="boolAnswer[@question.QuestionId]" value="checked" id="boolAnswer[@question.QuestionId]" />
+                        <label for="boolAnswer[@question.QuestionId]True" class="control-label">Faux</label>
+                        <input type="radio" for="boolAnswer[@question.QuestionId]" id="boolAnswer[@question.QuestionId]" />
+                    </div>
+                }
+                else if (question.TypeQuestion.Name == "Trou")
+                {
+                    <div class="form-group">
+                        <h3>@question.Header</h3>
+                        <p><i>(@question.TypeQuestion.Wording - @question.Mark point))</i></p>
+                    </div>
+                }
+            }
+        </form>
+    </div>
+</div>
