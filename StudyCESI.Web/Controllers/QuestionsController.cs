@@ -231,13 +231,10 @@ namespace StudyCESI.Web.Controllers
 
             return View(new CreateOrUpdateQuestionViewModel
             {
+                Question = question,
                 Subjects = _context.Subjects.ToList(),
                 TypeQuestions = _context.TypeQuestions.ToList()
             });
-            /*
-            ViewData["SubjectId"] = new SelectList(_context.Subjects, "SubjectId", "SubjectId", question.SubjectId);
-            ViewData["TypeQuestionId"] = new SelectList(_context.TypeQuestions, "TypeQuestionId", "TypeQuestionId", question.TypeQuestionId);
-            return View(question);*/
         }
 
         // POST: Questions/Edit/5
