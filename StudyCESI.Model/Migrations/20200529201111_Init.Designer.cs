@@ -10,8 +10,8 @@ using StudyCESI.Model.Data;
 namespace StudyCESI.Model.Migrations
 {
     [DbContext(typeof(StudyCesiContext))]
-    [Migration("20200529142952_init_do")]
-    partial class init_do
+    [Migration("20200529201111_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
