@@ -47,10 +47,10 @@
 @if (SignInManager.IsSignedIn(User) && User.FindFirst("Role").Value == "Enseignant")
 {
     <div class="row">
-        @if (Model.Exams.Count>0)
-        {
-            <div class="col-md-6">
-                <h2>Mes examens</h2>
+        <div class="col-md-6">
+            <h2>Mes examens</h2>
+            @if (Model.Exams.Count > 0)
+            {
                 <table class="table">
                     <thead>
                         <tr>
@@ -101,12 +101,15 @@
                         }
                     </tbody>
                 </table>
-            </div>
-        }
-        @if (Model.Questions.Count > 0)
-        {
-            <div class="col-md-6">
-                <h2>Mes questions</h2>
+            } else
+            {
+                <span>Vous n'avez créer aucun examen. </span>
+            }
+        </div>
+        <div class="col-md-6">
+            <h2>Mes questions</h2>
+            @if (Model.Questions.Count > 0)
+            {
                 <table class="table">
                     <thead>
                         <tr>
@@ -144,8 +147,12 @@
                         }
                     </tbody>
                 </table>
-            </div>
-        }
+            }
+            else
+            {
+                <span>Vous n'avez créer aucunes questions. </span>
+            }
+        </div>
     </div>
 
 }
