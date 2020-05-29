@@ -73,6 +73,7 @@ namespace StudyCESI.Model.Data
             modelBuilder.Entity<UserExamAnswer>()
                 .Property(u => u.CreationDate)
                 .HasDefaultValueSql("getdate()");
+
         }
     }
 }

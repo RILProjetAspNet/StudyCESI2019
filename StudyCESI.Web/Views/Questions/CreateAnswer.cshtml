@@ -134,7 +134,8 @@
         <form asp-action="CreateHoleAnswer">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Question.Header" class="control-label">Rajouter des [] pour encadrer la valeur du trou</label>
+                <label asp-for="Question.Header" class="control-label">Rajouter des [] pour encadrer la valeur du trou </label>
+                <i>Exemple (Je suis un [trou])</i>
                 <input asp-for="Question.Header" asp-route="questionHeader" class="form-control" />
                 <span asp-validation-for="Question.Header" class="text-danger"></span>
             </div>
