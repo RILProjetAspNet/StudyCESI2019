@@ -10,7 +10,7 @@ using StudyCESI.Model.Data;
 namespace StudyCESI.Model.Migrations
 {
     [DbContext(typeof(StudyCesiContext))]
-    [Migration("20200529134659_Init")]
+    [Migration("20200529201111_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -201,7 +201,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 5, 29, 15, 46, 58, 856, DateTimeKind.Local));
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("QuestionId")
                         .HasColumnName("Question_QuestionId");
@@ -223,7 +223,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 5, 29, 15, 46, 58, 857, DateTimeKind.Local));
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<bool>("IsRight");
 
@@ -245,7 +245,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 5, 29, 15, 46, 58, 857, DateTimeKind.Local));
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("Duration");
 
@@ -280,7 +280,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 5, 29, 15, 46, 58, 857, DateTimeKind.Local));
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<int?>("ExamId")
                         .HasColumnName("Exam_ExamId");
@@ -307,7 +307,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 5, 29, 15, 46, 58, 858, DateTimeKind.Local));
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("HoleLimitEnd");
 
@@ -331,7 +331,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 5, 29, 15, 46, 58, 858, DateTimeKind.Local));
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Header");
 
@@ -365,7 +365,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 5, 29, 15, 46, 58, 850, DateTimeKind.Local));
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Name");
 
@@ -382,7 +382,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 5, 29, 15, 46, 58, 859, DateTimeKind.Local));
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Name");
 
@@ -403,7 +403,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 5, 29, 15, 46, 58, 859, DateTimeKind.Local));
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("ExamId")
                         .HasColumnName("Exam_ExamId");
@@ -434,7 +434,7 @@ namespace StudyCESI.Model.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 5, 29, 15, 46, 58, 860, DateTimeKind.Local));
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("QuestionId")
                         .HasColumnName("Question_QuestionId");
