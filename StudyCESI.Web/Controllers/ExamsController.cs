@@ -105,6 +105,90 @@ namespace StudyCESI.Web.Controllers
                 _context.Add(exam);
 
                 SelectRandomQuestion(exam);
+
+                //Create userExams for each user
+                var users = _context.Users.ToListAsync();
+
+                for (int i = 0; i < users.Result.Count(); i++)
+                {
+                    _context.Add(new UserExam
+                    {
+                        UserId = users.Result[i].Id,
+                        ExamId = exam.ExamId,
+                        NumberTries = 0,
+                        BestNote = 0,
+                        IsValid = false
+                    });
+                    await _context.SaveChangesAsync();
+                }
+
+                return View(nameof(Details), new CreateOrUpdateExamViewModel
+                {
+                    Questions = _context.Questions.Include(e => e.TypeQuestion).ToList(),
+                    Subjects = _context.Subjects.ToList(),
+                    Exam = exam
+                });
+            }
+
+            return View(new CreateOrUpdateExamViewModel
+            {
+                Questions = _context.Questions.Include(e => e.TypeQuestion).ToList(),
+                Subjects = _context.Subjects.ToList(),
+                Exam = exam
+            });
+        }
+
+        // GET: Exams/Pass
+        [Authorize(Policy = "EstEtudiant")]
+        public async Task<IActionResult> Pass(int? id)
+        {
+            var model = new PassExamViewModel
+            {
+                Questions = await _context.ExamQuestions.Include(q => q.Question).Where(e => e.ExamId == id).Select(e => e.Question).ToListAsync()
+            };
+
+            for (int i = 0; i < model.Questions.Count(); i++)
+            {
+                // Get question type
+                int? typeQuestionId = model.Questions.ElementAt(i).TypeQuestionId;
+                model.Questions.ElementAt(i).TypeQuestion = await _context.TypeQuestions.Where(t => t.TypeQuestionId == typeQuestionId).FirstOrDefaultAsync();
+                string type = model.Questions.ElementAt(i).TypeQuestion.Name;
+
+                if (type == "Unique" || type == "Multiple")
+                {
+                    model.ChoiceAnswers = await _context.ChoiceAnswers.Where(a => a.QuestionId == model.Questions.ElementAt(i).QuestionId).ToListAsync();
+                }
+            }
+
+            foreach(var q in model.Questions)
+            {
+                var type = await _context.Questions.Include(t => t.TypeQuestion).Where(qu => qu.QuestionId == q.QuestionId).Select(e => e.TypeQuestion.Name).FirstOrDefaultAsync();
+
+                if (type == "Unique" || type == "Multiple")
+                {
+                    var answer = await _context.ChoiceAnswers.Where(a => a.QuestionId == q.QuestionId).FirstAsync();
+                    model.ChoiceAnswers.Append(answer);
+                }
+            }
+
+            return View(model);
+        }
+
+        // POST: Exams/Pass
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Policy = "EstEtudiant")]
+        public async Task<IActionResult> Pass([Bind("ExamId,Name,SubjectId,NumberQuestions,Duration,NumberTriesAllow,EndDate,CreationDate,UserId")] Exam exam)
+        {
+            exam.UserId = _userManager.GetUserId(User);
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(exam);
+
+                SelectRandomQuestion(exam);
                 await _context.SaveChangesAsync();
 
                 //Create userExams for each user
@@ -139,8 +223,9 @@ namespace StudyCESI.Web.Controllers
             });
         }
 
-        private void SelectRandomQuestion(Exam exam)
+        private async void SelectRandomQuestion(Exam exam)
         {
+            //Get list of Questions of this exam subject
             var questions = _context.Questions.Where(q => q.SubjectId == exam.SubjectId).ToList();
             int max = exam.NumberQuestions > questions.Count ? questions.Count : exam.NumberQuestions;
 

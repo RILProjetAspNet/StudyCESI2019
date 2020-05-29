@@ -8,7 +8,7 @@
 
 <div class="row form-content">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Pass">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             @foreach (var question in Model.Questions)
@@ -17,7 +17,7 @@
                 {
                     <div class="form-group">
                         <h3>@question.Header</h3>
-                        <p><i>(@question.TypeQuestion.Wording - @question.Mark point))</i></p>
+                        <p><i>(@question.TypeQuestion.Wording - @question.Mark point)</i></p>
                     </div>
                 }
 
@@ -26,7 +26,7 @@
                     @foreach (var answer in Model.ChoiceAnswers)
                     {
                         <label for="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" class="control-label">@answer.Answer</label>
-                        <input name="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" type="radio" value="@answer.ChoiceAnswerId" />
+                        <input type="radio" name="choiceAnswer[@question.QuestionId]" id="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" value="@answer.ChoiceAnswerId" />
                     }
                 }
                 else if (question.TypeQuestion.Name == "Multiple")
@@ -34,16 +34,16 @@
                     @foreach (var answer in Model.ChoiceAnswers)
                     {
                         <label for="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" class="control-label">@answer.Answer</label>
-                        <input name="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" type="checkbox" value="@answer.ChoiceAnswerId" />
+                        <input type="checkbox" name="choiceAnswer[@question.QuestionId]" id="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" value="@answer.ChoiceAnswerId" />
                     }
                 }
                 else if (question.TypeQuestion.Name == "VraiFaux")
                 {
                     <div class="form-group">
                         <label for="boolAnswer[@question.QuestionId]True" class="control-label">Vrai</label>
-                        <input type="radio" for="boolAnswer[@question.QuestionId]" value="checked" id="boolAnswer[@question.QuestionId]" />
-                        <label for="boolAnswer[@question.QuestionId]True" class="control-label">Faux</label>
-                        <input type="radio" for="boolAnswer[@question.QuestionId]" id="boolAnswer[@question.QuestionId]" />
+                        <input type="radio" for="boolAnswer[@question.QuestionId]" id="boolAnswer[@question.QuestionId]True" name="boolAnswer[@question.QuestionId]" />
+                        <label for="boolAnswer[@question.QuestionId]False" class="control-label">Faux</label>
+                        <input type="radio" for="boolAnswer[@question.QuestionId]" id="boolAnswer[@question.QuestionId]False" name="boolAnswer[@question.QuestionId]" />
                     </div>
                 }
                 else if (question.TypeQuestion.Name == "Trou")
@@ -54,6 +54,10 @@
                     </div>
                 }
             }
+
+            <div class="form-group">
+                <input type="submit" value="Valider l'examen" class="btn btn-default btn-create" />
+            </div>
         </form>
     </div>
 </div>
