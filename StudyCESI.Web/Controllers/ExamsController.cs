@@ -144,8 +144,10 @@ namespace StudyCESI.Web.Controllers
         {
             var model = new PassExamViewModel
             {
+                UserExam = await _context.UserExams.Where(e => e.ExamId == id && e.UserId == _userManager.GetUserId(User)).FirstOrDefaultAsync(),
                 Exam = await _context.Exams.Where(e => e.ExamId == id).FirstOrDefaultAsync(),
-                Questions = await _context.ExamQuestions.Include(q => q.Question).Where(e => e.ExamId == id).Select(e => e.Question).ToListAsync()
+                Questions = await _context.ExamQuestions.Include(q => q.Question).Where(e => e.ExamId == id).Select(e => e.Question).ToListAsync(),
+                ChoiceAnswers = new List<ChoiceAnswer>()
             };
 
             for (int i = 0; i < model.Questions.Count(); i++)
@@ -157,8 +159,9 @@ namespace StudyCESI.Web.Controllers
 
                 if (type == "Unique" || type == "Multiple")
                 {
-                    model.ChoiceAnswers = await _context.ChoiceAnswers.Where(a => a.QuestionId == model.Questions.ElementAt(i).QuestionId).ToListAsync();
+                    model.ChoiceAnswers.AddRange(await _context.ChoiceAnswers.Where(a => a.QuestionId == model.Questions.ElementAt(i).QuestionId).ToListAsync());
                 }
+
             }
 
             return View(model);
@@ -177,29 +180,8 @@ namespace StudyCESI.Web.Controllers
 
             if (ModelState.IsValid)
             {
-               /* _context.Add(UserExamAnswer);
-
-                SelectRandomQuestion(exam);
-                await _context.SaveChangesAsync();
-
-                //Create userExams for each user
-                var users = _context.Users.ToListAsync();
-
-                for (int i = 0; i < users.Result.Count(); i++)
-                {
-                    _context.Add(new UserExam
-                    {
-                        UserId = users.Result[i].Id,
-                        ExamId = exam.ExamId,
-                        NumberTries = 0,
-                        BestNote = 0,
-                        IsValid = false
-                    });
-                    await _context.SaveChangesAsync();
-                }
-                */
-
-                return View(nameof(ResultPass), 2);
+                // TODO  
+                return View(nameof(ResultPass), 1);
 
             }
 

@@ -4,15 +4,19 @@
     ViewData["Title"] = "Examen en cours";
 }
 
-<h2>Passage de l'examen : @Model.Exam[0].Name</h2>
+<h2>Passage de l'examen : @Model.Exam.Name</h2>
 
 <div class="row form-content">
     <div class="col-md-4">
         <form asp-action="Pass">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            @foreach (var question in Model.Questions)
+            @for (int i = 0; i < Model.Questions.Count(); i++)
             {
+                var question = Model.Questions.ElementAt(i);
+
+                <input type="hidden" asp-for="UserExam.UserExamId" />
+
                 @if (question.TypeQuestion.Name != "Trou")
                 {
                     <div class="form-group">
@@ -21,29 +25,24 @@
                     </div>
                 }
 
-                @if (question.TypeQuestion.Name == "Unique")
+                @if (question.TypeQuestion.Name == "Unique" || question.TypeQuestion.Name == "Multiple")
                 {
-                    @foreach (var answer in Model.ChoiceAnswers)
+                    <input type="hidden" asp-for="Questions.ElementAt(i).QuestionId" />
+
+                    foreach (var answer in Model.ChoiceAnswers.Where(a => a.QuestionId == question.QuestionId).ToList())
                     {
-                        <label for="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" class="control-label">@answer.Answer</label>
-                        <input type="radio" name="choiceAnswer[@question.QuestionId]" id="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" value="@answer.ChoiceAnswerId" />
+                        <label for="@answer.ChoiceAnswerId" class="control-label">@answer.Answer</label>
+                        <input for="@answer.ChoiceAnswerId" id="@answer.ChoiceAnswerId" type="@(question.TypeQuestion.Name == "Unique" ? Html.Raw("radio") : Html.Raw("checkbox"))" name="@question.QuestionId" value="@answer.Answer" />
                     }
-                }
-                else if (question.TypeQuestion.Name == "Multiple")
-                {
-                    @foreach (var answer in Model.ChoiceAnswers)
-                    {
-                        <label for="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" class="control-label">@answer.Answer</label>
-                        <input type="checkbox" name="choiceAnswer[@question.QuestionId]" id="choiceAnswer[@question.QuestionId][@answer.ChoiceAnswerId]" value="@answer.ChoiceAnswerId" />
-                    }
+
                 }
                 else if (question.TypeQuestion.Name == "VraiFaux")
                 {
                     <div class="form-group">
                         <label for="boolAnswer[@question.QuestionId]True" class="control-label">Vrai</label>
-                        <input type="radio" for="boolAnswer[@question.QuestionId]" id="boolAnswer[@question.QuestionId]True" name="boolAnswer[@question.QuestionId]" />
+                        <input type="radio" for="boolAnswer[@question.QuestionId]True" id="boolAnswer[@question.QuestionId]True" name="boolAnswer[@question.QuestionId]" value="1" />
                         <label for="boolAnswer[@question.QuestionId]False" class="control-label">Faux</label>
-                        <input type="radio" for="boolAnswer[@question.QuestionId]" id="boolAnswer[@question.QuestionId]False" name="boolAnswer[@question.QuestionId]" />
+                        <input type="radio" for="boolAnswer[@question.QuestionId]False" id="boolAnswer[@question.QuestionId]False" name="boolAnswer[@question.QuestionId]" value="0" />
                     </div>
                 }
                 else if (question.TypeQuestion.Name == "Trou")
@@ -69,13 +68,14 @@
 
         // Timeout Exam
         let durationS = @Model.Exam.Duration * 60;
-        while (durationS != 0) {
-            setTimeout(() => {
-                durationS--;
-                console.log(durationS);
-                $("#ExamDuration").text(durationS);
-            }, 1000)
-        }
-        location.replace('Exam/Result/' + @Model.Exam.ExamId);
+        setInterval(() => {
+            durationS--;
+            $("#ExamDuration").text(durationS);
+
+            if (durationS == 0) {
+                location.replace('Exam/Result/' + @Model.Exam.ExamId);
+            }
+        }, 1000)
+
     </script>
 }

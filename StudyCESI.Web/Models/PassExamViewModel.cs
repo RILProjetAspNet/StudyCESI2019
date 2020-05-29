@@ -8,9 +8,9 @@ namespace StudyCESI.Web.Models
 {
     public class PassExamViewModel
     {
+        public UserExam UserExam { get; set; }
         public Exam Exam { get; set; }
         public IEnumerable<Question> Questions { get; set; }
-        public IEnumerable<ChoiceAnswer> ChoiceAnswers { get; set; }
-        public List<Exam> Exam { get; set; }
+        public List<ChoiceAnswer> ChoiceAnswers { get; set; }
     }
 }
