@@ -33,6 +33,7 @@ namespace StudyCESI.Web.Controllers
         }
 
         // GET: Exams/Details/5
+        [Authorize(Policy = "EstEnseignant")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -56,6 +57,7 @@ namespace StudyCESI.Web.Controllers
         }
 
         // GET: Exams/Create
+        [Authorize(Policy = "EstEnseignant")]
         public IActionResult Create()
         {
             return View(new CreateOrUpdateExamViewModel 
@@ -70,6 +72,7 @@ namespace StudyCESI.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "EstEnseignant")]
         public async Task<IActionResult> Create([Bind("ExamId,Name,SubjectId,NumberQuestions,Duration,NumberTriesAllow,EndDate,CreationDate,UserId")] Exam exam)
         {
             exam.UserId = _userManager.GetUserId(User);
@@ -107,7 +110,8 @@ namespace StudyCESI.Web.Controllers
             }
         }
 
-        // GET: Exams/Edit/5
+        // GET: Exams/Edit/
+        [Authorize(Policy = "EstEnseignant")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -134,6 +138,7 @@ namespace StudyCESI.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "EstEnseignant")]
         public async Task<IActionResult> Edit(int id, [Bind("ExamId,Name,NumberQuestions,Duration,NumberTriesAllow,EndDate,CreationDate,UserId")] Exam exam)
         {
             if (id != exam.ExamId)
@@ -171,6 +176,7 @@ namespace StudyCESI.Web.Controllers
         }
 
         // GET: Exams/Delete/5
+        [Authorize(Policy = "EstEnseignant")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
